@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://dixpd7f0uds7y"]
 
-[ext_resource type="Texture2D" uid="uid://d2oo44vofo8nm" path="res://resources/sprites/titlescreen.png" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://bvrnex2u4avtw" path="res://resources/sprites/titlescreen.png" id="1_sl1te"]
 [ext_resource type="Texture2D" uid="uid://b6p1slq7y1627" path="res://resources/sprites/groundbreaking.png" id="2_fe2o3"]
 [ext_resource type="Texture2D" uid="uid://chywwjcyo6p8u" path="res://resources/sprites/crack.png" id="3_1g8jr"]
 [ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://resources/fonts/gomarice_no_continue.ttf" id="4_m1kxf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sl1te"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1kxf"]
 atlas = ExtResource("1_sl1te")
 region = Rect2(0, 0, 144, 81)
 
@@ -27,10 +27,10 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 144.0
+offset_bottom = 81.0
 scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_sl1te")
+texture = SubResource("AtlasTexture_m1kxf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
