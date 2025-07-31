@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://dixpd7f0uds7y"]
+
+[ext_resource type="Texture2D" uid="uid://d2oo44vofo8nm" path="res://resources/sprites/titlescreen.png" id="1_sl1te"]
+[ext_resource type="Texture2D" uid="uid://b6p1slq7y1627" path="res://resources/sprites/groundbreaking.png" id="2_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://chywwjcyo6p8u" path="res://resources/sprites/crack.png" id="3_1g8jr"]
+[ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://resources/fonts/gomarice_no_continue.ttf" id="4_m1kxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl1te"]
+atlas = ExtResource("1_sl1te")
+region = Rect2(0, 0, 144, 81)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m1kxf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x2yvf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhagc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btxxm"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(8, 8)
+texture = SubResource("AtlasTexture_sl1te")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1046.5, 592)
+texture = ExtResource("2_fe2o3")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1040.5, 624)
+texture = ExtResource("3_1g8jr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 416.0
+offset_right = 319.0
+offset_bottom = 667.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.788235, 0.141176, 0.392157, 1)
+theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_colors/font_pressed_color = Color(0.0666667, 0.678431, 0.756863, 1)
+theme_override_fonts/font = ExtResource("4_m1kxf")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1kxf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x2yvf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btxxm")
+text = "Play"
+alignment = 0
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.788235, 0.141176, 0.392157, 1)
+theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_colors/font_pressed_color = Color(0.0666667, 0.678431, 0.756863, 1)
+theme_override_fonts/font = ExtResource("4_m1kxf")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1kxf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x2yvf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btxxm")
+text = "Settings"
+alignment = 0
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.788235, 0.141176, 0.392157, 1)
+theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_colors/font_pressed_color = Color(0.0666667, 0.678431, 0.756863, 1)
+theme_override_fonts/font = ExtResource("4_m1kxf")
+theme_override_font_sizes/font_size = 70
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m1kxf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_x2yvf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_btxxm")
+text = "Exit"
+alignment = 0
