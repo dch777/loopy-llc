@@ -30,9 +30,14 @@ tile_set = SubResource("TileSet_y6gxj")
 
 [node name="Worker" parent="manager" instance=ExtResource("1_gvyhi")]
 position = Vector2(424, 232)
+spawn_position = Vector2i(1, 0)
 
 [node name="Worker2" parent="manager" instance=ExtResource("1_gvyhi")]
 position = Vector2(-27, 5)
+
+[node name="Worker3" parent="manager" instance=ExtResource("1_gvyhi")]
+position = Vector2(-27, 5)
+spawn_position = Vector2i(0, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_lfxy1")

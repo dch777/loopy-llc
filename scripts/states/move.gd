@@ -23,5 +23,6 @@ func update(delta: float):
 
 	fsm.global_position += dir.normalized() * speed
 
-# func exit():
-# 	tween.kill()
+func exit():
+	if fsm.path.size() > 0:
+		fsm.manager.astar.set_point_solid(fsm.path[-1], false)

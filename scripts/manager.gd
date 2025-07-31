@@ -10,7 +10,7 @@ class_name Manager extends Node2D
 
 @onready var hover_shader: ShaderMaterial = preload("res://assets/shaders/hover.tres")
 
-var object_selected: bool
+var hovered_objects: Dictionary[Node2D, Object]
 var selected_workers: Dictionary[StateMachine, Object]
 var workers: Array[StateMachine]
 
@@ -29,39 +29,61 @@ func _ready() -> void:
 				astar.set_point_solid(cell)
 
 	for worker in find_children("*", "StateMachine"):
-		workers.push_back(worker)
 		astar.set_point_solid(worker.map_position)
+		workers.push_back(worker)
 
 func _process(delta: float) -> void:
 	var hovered_cell = ground.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
 	hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
 
-	if selected_workers.size() > 0 and !object_selected:
+	if selected_workers.size() > 0 and hovered_objects.size() == 0:
 		hover_shader.set_shader_parameter("active", 1.0)
 	else:
 		hover_shader.set_shader_parameter("active", 0.0)
 
-	if Input.is_action_just_pressed("select") and selected_workers.size() > 0 and \
-	   !astar.is_point_solid(hovered_cell) and !object_selected:
-		var worker = selected_workers.keys()[0]
-		var path = astar.get_id_path(worker.map_position, hovered_cell);
-		if path.size() > 0:
-			worker.navigate(path)
+	if Input.is_action_just_pressed("select") and !astar.is_point_solid(hovered_cell) and hovered_objects.size() == 0:
+		for worker in selected_workers:
+			var path = astar.get_id_path(worker.map_position, hovered_cell, true);
+			if path.size() > 0:
+				astar.set_point_solid(worker.map_position, false)
+				astar.set_point_solid(path[-1])
+				worker.navigate(path)
+			astar.set_point_solid(worker.map_position, false)
 
 func map_to_global(vec: Vector2) -> Vector2:
 	return to_global(ground.map_to_local(vec))
 
+func select_worker(worker: StateMachine):
+	selected_workers[worker] = null
+	worker.selected = true
+
+func deselect_worker(worker: StateMachine):
+	selected_workers.erase(worker)
+	worker.selected = false
+
+func clear_selected_workers():
+	for worker in selected_workers:
+		worker.selected = false
+	selected_workers.clear()
+
 func worker_input_event(worker: StateMachine, event: InputEvent):
 	if event.is_action("select") and event.pressed:
-		if selected_workers.has(worker):
-			selected_workers.erase(worker)
+		if selected_workers.has(worker) and Input.is_action_pressed("multi"):
+			deselect_worker(worker)
+		elif selected_workers.has(worker):
+			if selected_workers.size() > 1:
+				clear_selected_workers()
+				select_worker(worker)
+			else:
+				deselect_worker(worker)
 		else:
-			selected_workers[worker] = null
-		print(selected_workers)
+			if !Input.is_action_pressed("multi"):
+				clear_selected_workers()
+			select_worker(worker)
 
-func object_mouse_entered():
-	object_selected = true
+func object_mouse_entered(object: Node2D):
+	hovered_objects[object] = null
 
-func object_mouse_exited():
-	object_selected = false
+func object_mouse_exited(object: Node2D):
+	hovered_objects.erase(object)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://t12grxun0rgj"]
+[gd_scene load_steps=7 format=3 uid="uid://t12grxun0rgj"]
 
 [ext_resource type="Script" uid="uid://b0pgwooqqg7dc" path="res://scripts/state_machine.gd" id="1_ont85"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="1_w0kqu"]
 [ext_resource type="Script" uid="uid://ckf6fvhep6mil" path="res://scripts/state.gd" id="2_3nntn"]
 [ext_resource type="Script" uid="uid://bug6s7nrs8poq" path="res://scripts/states/move.gd" id="3_moqo0"]
+[ext_resource type="Texture2D" uid="uid://c1i1ojj4mxujw" path="res://assets/sprites/just_black.png" id="5_moqo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ji5e"]
 
@@ -31,3 +32,8 @@ metadata/_custom_type_script = "uid://bug6s7nrs8poq"
 [node name="idle" type="Node2D" parent="states"]
 script = ExtResource("2_3nntn")
 metadata/_custom_type_script = "uid://ckf6fvhep6mil"
+
+[node name="JustBlack" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.21875, 0.21875)
+texture = ExtResource("5_moqo0")
