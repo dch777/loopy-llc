@@ -1,0 +1,176 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwxvi26mjynhv"]
+
+[ext_resource type="Texture2D" uid="uid://d0obmp2hqs8q0" path="res://resources/sprites/taskicons.png" id="1_gvr6b"]
+
+[node name="Timeline" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, 16)
+points = PackedVector2Array(128, 32, 1024, 32)
+width = 5.0
+
+[node name="Hour" type="Node2D" parent="Line2D"]
+position = Vector2(128, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Line2D/Hour/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_gvr6b")
+
+[node name="Hour2" type="Node2D" parent="Line2D"]
+position = Vector2(256, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour2"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour3" type="Node2D" parent="Line2D"]
+position = Vector2(384, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour3"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour4" type="Node2D" parent="Line2D"]
+position = Vector2(512, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour4"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour5" type="Node2D" parent="Line2D"]
+position = Vector2(640, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour5"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour5"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour6" type="Node2D" parent="Line2D"]
+position = Vector2(768, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour6"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour6"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour7" type="Node2D" parent="Line2D"]
+position = Vector2(896, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour7"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour7"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hour8" type="Node2D" parent="Line2D"]
+position = Vector2(1024, 32)
+
+[node name="Line2D" type="Line2D" parent="Line2D/Hour8"]
+points = PackedVector2Array(0, -8, 0, 8)
+width = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Hour8"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
