@@ -47,9 +47,10 @@ func _process(delta: float) -> void:
 			var path = astar.get_id_path(worker.map_position, hovered_cell, true);
 			if path.size() > 0:
 				astar.set_point_solid(worker.map_position, false)
+				if worker.path.size() > 0:
+					astar.set_point_solid(worker.path[-1], false)
 				astar.set_point_solid(path[-1])
 				worker.navigate(path)
-			astar.set_point_solid(worker.map_position, false)
 
 func map_to_global(vec: Vector2) -> Vector2:
 	return to_global(ground.map_to_local(vec))
