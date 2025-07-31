@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cwen3e6wnkqa5"]
+
+[ext_resource type="Shader" uid="uid://cph1o3wo5hvhr" path="res://assets/shaders/hover.gdshader" id="1_psclu"]
+
+[resource]
+shader = ExtResource("1_psclu")
+shader_parameter/highlighted_cell = Vector2(0, 0)
+shader_parameter/reachable = 0.0
