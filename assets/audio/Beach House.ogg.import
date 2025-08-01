@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bsbnf3yphbfq2"
+path="res://.godot/imported/Beach House.ogg-41f89a2008cec8c76d2c5c14900696a2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Beach House.ogg"
+dest_files=["res://.godot/imported/Beach House.ogg-41f89a2008cec8c76d2c5c14900696a2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
