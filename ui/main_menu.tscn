@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bblfu1olousd8" path="res://scripts/main_menu.gd" id="1_x2yvf"]
 [ext_resource type="Texture2D" uid="uid://b6p1slq7y1627" path="res://assets/sprites/groundbreaking.png" id="2_fe2o3"]
 [ext_resource type="Texture2D" uid="uid://chywwjcyo6p8u" path="res://assets/sprites/crack.png" id="3_1g8jr"]
-[ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="4_m1kxf"]
+[ext_resource type="FontFile" uid="uid://cinugwq2oexrr" path="res://assets/fonts/ThaleahFat.ttf" id="5_8uxxo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m1kxf"]
 atlas = ExtResource("1_sl1te")
@@ -59,8 +59,8 @@ layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.788235, 0.141176, 0.392157, 1)
 theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
 theme_override_colors/font_pressed_color = Color(0.0666667, 0.678431, 0.756863, 1)
-theme_override_fonts/font = ExtResource("4_m1kxf")
-theme_override_font_sizes/font_size = 70
+theme_override_fonts/font = ExtResource("5_8uxxo")
+theme_override_font_sizes/font_size = 90
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m1kxf")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x2yvf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_uhagc")
@@ -73,8 +73,8 @@ layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.788235, 0.141176, 0.392157, 1)
 theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
 theme_override_colors/font_pressed_color = Color(0.0666667, 0.678431, 0.756863, 1)
-theme_override_fonts/font = ExtResource("4_m1kxf")
-theme_override_font_sizes/font_size = 70
+theme_override_fonts/font = ExtResource("5_8uxxo")
+theme_override_font_sizes/font_size = 90
 theme_override_styles/focus = SubResource("StyleBoxEmpty_m1kxf")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_x2yvf")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_uhagc")
