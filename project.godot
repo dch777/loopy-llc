@@ -15,6 +15,11 @@ run/main_scene="uid://jeogyo04s1u"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameTime="*res://globals/GameTime.tscn"
+GameAudio="*res://globals/GameAudio.tscn"
+
 [input]
 
 select={
@@ -41,3 +46,4 @@ drag={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.133333, 0.137255, 0.137255, 1)
