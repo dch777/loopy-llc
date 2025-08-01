@@ -53,6 +53,11 @@ func _process(delta: float):
 		state_stack[0].update(delta)
 
 	$JustBlack.visible = selected
+	if selected:
+		$Line2D.visible = true
+		$Line2D.points = [Vector2(0, 0)] + path.map(manager.map_to_global).map(to_local)
+	else:
+		$Line2D.visible = false
 
 func _physics_process(delta: float):
 	if state_stack.size() > 0:

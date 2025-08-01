@@ -23,6 +23,12 @@ texture = ExtResource("1_w0kqu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="Line2D" type="Line2D" parent="."]
+width = 4.0
+joint_mode = 2
+end_cap_mode = 2
+antialiased = true
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
