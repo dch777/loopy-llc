@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dejb3hh43hkyy"]
+
+[ext_resource type="Shader" uid="uid://d0runvjs0o6wk" path="res://assets/shaders/status_bar.gdshader" id="1_38lli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_38lli"]
+shader = ExtResource("1_38lli")
+shader_parameter/happy_color = Color(1, 1, 1, 1)
+shader_parameter/tired_color = Color(0.969, 0.894, 0.463, 1)
+shader_parameter/angry_color = Color(0.788, 0.141, 0.392, 1)
+shader_parameter/happy_size = 1.0
+shader_parameter/tired_size = 0.0
+shader_parameter/angry_size = 0.0
+
+[node name="StatusBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_38lli")
+custom_minimum_size = Vector2(32, 4)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 4.0
