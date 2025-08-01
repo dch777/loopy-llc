@@ -2,8 +2,10 @@
 
 class_name Work extends State
 
-# func update(delta: float):
-# 	fsm.manager.astar.set_point_solid(fsm.map_position)
+func enter():
+	fsm.facing_up = fsm.site.facing_up
+	fsm.facing_left = fsm.site.facing_left
+	fsm.play_animation(fsm.site.animation)
 
 func exit():
 	fsm.site.worker = null

@@ -57,11 +57,9 @@ spawn_position = Vector2i(0, 3)
 
 [node name="Desk" parent="manager" instance=ExtResource("5_y6gxj")]
 position = Vector2(28.5866, 14.2693)
-map_position = Vector2i(1, -5)
 
 [node name="Desk2" parent="manager" instance=ExtResource("5_y6gxj")]
 position = Vector2(28.5866, 14.2693)
-map_position = Vector2i(1, 3)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("2_lfxy1")

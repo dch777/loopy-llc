@@ -1569,6 +1569,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_kfnlr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uokxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rxqn")
+}],
+"loop": false,
+"name": &"default_down_left_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_itb1d")
 }, {
 "duration": 1.0,
@@ -1598,12 +1612,17 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t2wst")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_de3m2")
 }],
 "loop": false,
 "name": &"default_down_right_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2wst")
+}],
+"loop": true,
+"name": &"default_down_right_sit",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1626,6 +1645,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"default_up_left_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onwbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwqkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i46bm")
+}],
+"loop": false,
+"name": &"default_up_left_jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1659,9 +1692,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v5dy6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d73tq")
 }],
 "loop": false,
 "name": &"default_up_right_jump",
@@ -1702,7 +1732,7 @@ shape = SubResource("RectangleShape2D_5ji5e")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_qnj8w")
-animation = &"default_down_right_jump"
+animation = &"default_up_right_jump"
 
 [node name="states" type="Node2D" parent="."]
 

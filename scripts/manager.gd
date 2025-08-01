@@ -7,6 +7,7 @@ class_name Manager extends Node2D
 @onready var astar = AStarGrid2D.new()
 @onready var background: TileMapLayer = $background
 @onready var walls: TileMapLayer = $walls
+@onready var office: TileMapLayer = $office
 
 @onready var hover_shader: ShaderMaterial = preload("res://assets/shaders/hover.tres")
 
@@ -25,6 +26,14 @@ func _ready() -> void:
 
 	for cell in walls.get_used_cells():
 		astar.set_point_solid(cell)
+	for cell in office.get_used_cells():
+		astar.set_point_solid(cell)
+
+		var interaction_scene: PackedScene = office.get_cell_tile_data(cell).get_custom_data("interaction_scene")
+		if interaction_scene != null:
+			var new_interactable = interaction_scene.instantiate()
+			new_interactable.map_position = cell
+			add_child(new_interactable)
 
 	for x in range(astar.region.position.x, astar.region.end.x):
 		for y in range(astar.region.position.y, astar.region.end.y):
@@ -115,7 +124,7 @@ func worker_input_event(worker: StateMachine, event: InputEvent):
 func site_input_event(site: TaskSite, event: InputEvent):
 	if event.is_action("select") and event.pressed and site.worker == null and selected_workers.size() > 0 and hovered_objects.size() == 1:
 		for worker in selected_workers:
-			navigate(worker, site.map_position)
+			navigate(worker, site.map_position + site.target_offset)
 			worker.site = site
 
 func object_mouse_entered(object: Node2D):
