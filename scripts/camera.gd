@@ -5,11 +5,10 @@ extends Camera2D
 @export var zoom_max: float = 3.0
 @export var zoom_min: float = 0.5
 
-var zoom_target: float = 1.0
+@onready var zoom_target: float = zoom.x
 var previous_position: Vector2
 
 func _process(delta: float) -> void:
-
 	var zoom_factor: float = 0.0
 
 	if zoom_target <= zoom_max and Input.is_action_just_released("zoom in"):
@@ -17,13 +16,8 @@ func _process(delta: float) -> void:
 	if zoom_target >= zoom_min and Input.is_action_just_released("zoom out"):
 		zoom_factor = -1.0
 
-	zoom_target *= 1.3 ** zoom_factor
+	zoom_target *= 1.2 ** zoom_factor
 	zoom = lerp(zoom, Vector2(zoom_target, zoom_target), 0.1)
-	
-	# if Input.is_action_pressed("drag"):
-	# 	print(get_global_mouse_position() - previous_position)
-	# 	global_position -= get_global_mouse_position() - previous_position
-	# 	previous_position = get_global_mouse_position()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("drag") and event.pressed:

@@ -19,5 +19,5 @@ func update(delta: float):
 func physics_update(delta: float):
 	return
 
-func animation_finished(anim_name):
+func animation_finished():
 	return

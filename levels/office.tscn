@@ -7,13 +7,13 @@
 [ext_resource type="Script" uid="uid://bam3dxtmui6rd" path="res://scripts/camera.gd" id="2_lfxy1"]
 [ext_resource type="PackedScene" uid="uid://cx2bnk3j8oe53" path="res://prefabs/desk.tscn" id="5_y6gxj"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rrbnf"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y6gxj"]
 texture = ExtResource("1_7to48")
 0:0/0 = 0
 0:0/0/material = ExtResource("1_rrbnf")
 
 [sub_resource type="TileSet" id="TileSet_wnwvs"]
-sources/0 = SubResource("TileSetAtlasSource_rrbnf")
+sources/0 = SubResource("TileSetAtlasSource_y6gxj")
 
 [sub_resource type="TileSet" id="TileSet_y6gxj"]
 

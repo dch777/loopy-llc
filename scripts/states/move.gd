@@ -15,6 +15,10 @@ func enter():
 func update(delta: float):
 	var dir = fsm.manager.map_to_global(fsm.path[0]) - fsm.global_position
 
+	fsm.facing_up = dir.y < 0
+	fsm.facing_left = dir.x < 0
+	fsm.play_animation("walk")
+
 	if fsm.path.size() > 1 and dir.length() <= error_radius:
 		fsm.map_position = fsm.path.pop_front()
 		dir = fsm.manager.map_to_global(fsm.path[0]) - fsm.global_position
@@ -29,3 +33,4 @@ func update(delta: float):
 func exit():
 	if fsm.path.size() > 0:
 		fsm.manager.astar.set_point_solid(fsm.path[-1], false)
+		fsm.path.pop_front()

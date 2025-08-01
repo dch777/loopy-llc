@@ -5,8 +5,8 @@ class_name Manager extends Node2D
 @export var diagonal_mode: AStarGrid2D.DiagonalMode = AStarGrid2D.DiagonalMode.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 
 @onready var astar = AStarGrid2D.new()
-@onready var ground: TileMapLayer = $ground
-@onready var props: TileMapLayer = $props
+@onready var background: TileMapLayer = $background
+@onready var walls: TileMapLayer = $walls
 
 @onready var hover_shader: ShaderMaterial = preload("res://assets/shaders/hover.tres")
 
@@ -20,23 +20,23 @@ var select_rect: Rect2
 
 func _ready() -> void:
 	astar.set_diagonal_mode(diagonal_mode)
-	astar.set_region(ground.get_used_rect())
+	astar.set_region(background.get_used_rect())
 	astar.update()
 
-	for cell in props.get_used_cells():
+	for cell in walls.get_used_cells():
 		astar.set_point_solid(cell)
 
 	for x in range(astar.region.position.x, astar.region.end.x):
 		for y in range(astar.region.position.y, astar.region.end.y):
 			var cell = Vector2(x, y)
-			if ground.get_cell_source_id(cell) == -1:
+			if background.get_cell_source_id(cell) == -1:
 				astar.set_point_solid(cell)
 
 	for worker in find_children("*", "StateMachine"):
 		workers.push_back(worker)
 
 func _process(delta: float) -> void:
-	var hovered_cell = ground.local_to_map(get_local_mouse_position())
+	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
 	hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
 
@@ -82,7 +82,7 @@ func navigate(worker: StateMachine, dest: Vector2i, pop: bool = true) -> void:
 		worker.change_state(worker.navigate_state, pop)
 
 func map_to_global(vec: Vector2) -> Vector2:
-	return to_global(ground.map_to_local(vec))
+	return to_global(background.map_to_local(vec))
 
 func select_worker(worker: StateMachine):
 	selected_workers[worker] = null
