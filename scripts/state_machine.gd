@@ -5,6 +5,7 @@ class_name StateMachine extends Node2D
 @export_group("State")
 @export var entry_state: String
 @export var navigate_state: String
+@export var sit_state: String
 
 @export_group("Worker")
 @export var spawn_position: Vector2i
@@ -26,6 +27,9 @@ var selected: bool
 var path: Array
 var map_position: Vector2i
 
+var site: TaskSite
+var seated: bool = false
+
 func _ready():
 	for child in find_children("*", "State"):
 		states.get_or_add(child.name, child)
@@ -42,7 +46,6 @@ func _ready():
 
 	map_position = spawn_position
 	global_position = get_node("../ground").map_to_local(map_position)
-	print(get_node("../ground").map_to_local(map_position))
 
 func _process(delta: float):
 	animation_player.advance(delta * anim_speed)
@@ -60,6 +63,7 @@ func push_state(next_state: String):
 	state_stack[0].enter()
 
 func change_state(next_state: String, pop: bool):
+	print(state_stack)
 	if pop:
 		state_stack.pop_front().exit()
 	else:
@@ -69,10 +73,6 @@ func change_state(next_state: String, pop: bool):
 		state_stack.push_front(states[next_state])
 	if state_stack.size() > 0:
 		state_stack[0].enter()
-
-func navigate(path: Array):
-	self.path = path
-	change_state(navigate_state, true)
 
 func input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	manager.worker_input_event(self, event)

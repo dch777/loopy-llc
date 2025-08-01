@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://t12grxun0rgj"]
+[gd_scene load_steps=9 format=3 uid="uid://t12grxun0rgj"]
 
 [ext_resource type="Script" uid="uid://b0pgwooqqg7dc" path="res://scripts/state_machine.gd" id="1_ont85"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="1_w0kqu"]
-[ext_resource type="Script" uid="uid://ckf6fvhep6mil" path="res://scripts/state.gd" id="2_3nntn"]
 [ext_resource type="Script" uid="uid://bug6s7nrs8poq" path="res://scripts/states/move.gd" id="3_moqo0"]
+[ext_resource type="Script" uid="uid://f4elg5ii5pan" path="res://scripts/states/work.gd" id="4_de3m2"]
 [ext_resource type="Texture2D" uid="uid://c1i1ojj4mxujw" path="res://assets/sprites/just_black.png" id="5_moqo0"]
+[ext_resource type="Script" uid="uid://m03hb5fmw00k" path="res://scripts/states/sit.gd" id="5_xmpa0"]
+[ext_resource type="Script" uid="uid://c1iytlc6xycfj" path="res://scripts/states/idle.gd" id="6_de3m2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ji5e"]
 
@@ -12,6 +14,7 @@
 script = ExtResource("1_ont85")
 entry_state = "idle"
 navigate_state = "walk"
+sit_state = "sit"
 
 [node name="Worker" type="Sprite2D" parent="."]
 texture = ExtResource("1_w0kqu")
@@ -29,9 +32,17 @@ shape = SubResource("RectangleShape2D_5ji5e")
 script = ExtResource("3_moqo0")
 metadata/_custom_type_script = "uid://bug6s7nrs8poq"
 
+[node name="work" type="Node2D" parent="states"]
+script = ExtResource("4_de3m2")
+metadata/_custom_type_script = "uid://f4elg5ii5pan"
+
+[node name="sit" type="Node2D" parent="states"]
+script = ExtResource("5_xmpa0")
+metadata/_custom_type_script = "uid://m03hb5fmw00k"
+
 [node name="idle" type="Node2D" parent="states"]
-script = ExtResource("2_3nntn")
-metadata/_custom_type_script = "uid://ckf6fvhep6mil"
+script = ExtResource("6_de3m2")
+metadata/_custom_type_script = "uid://c1iytlc6xycfj"
 
 [node name="JustBlack" type="Sprite2D" parent="."]
 visible = false

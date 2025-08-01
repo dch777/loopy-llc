@@ -29,28 +29,30 @@ func _ready() -> void:
 				astar.set_point_solid(cell)
 
 	for worker in find_children("*", "StateMachine"):
-		astar.set_point_solid(worker.map_position)
+		# astar.set_point_solid(worker.map_position)
 		workers.push_back(worker)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var hovered_cell = ground.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
 	hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
 
-	if selected_workers.size() > 0 and hovered_objects.size() == 0:
+	if selected_workers.size() > 0 and hovered_objects.size() == 0 and astar.is_in_boundsv(hovered_cell) and !astar.is_point_solid(hovered_cell):
 		hover_shader.set_shader_parameter("active", 1.0)
 	else:
 		hover_shader.set_shader_parameter("active", 0.0)
 
 	if Input.is_action_just_pressed("select") and !astar.is_point_solid(hovered_cell) and hovered_objects.size() == 0:
 		for worker in selected_workers:
-			var path = astar.get_id_path(worker.map_position, hovered_cell, true);
-			if path.size() > 0:
-				astar.set_point_solid(worker.map_position, false)
-				if worker.path.size() > 0:
-					astar.set_point_solid(worker.path[-1], false)
-				astar.set_point_solid(path[-1])
-				worker.navigate(path)
+			navigate(worker, hovered_cell)
+
+func navigate(worker: StateMachine, dest: Vector2i, pop: bool = true) -> void:
+	var path = astar.get_id_path(worker.map_position, dest, true);
+	if path.size() > 0:
+		if worker.path.size() > 0:
+			astar.set_point_solid(worker.path[-1], false)
+		worker.path = path
+		worker.change_state(worker.navigate_state, pop)
 
 func map_to_global(vec: Vector2) -> Vector2:
 	return to_global(ground.map_to_local(vec))
@@ -82,6 +84,12 @@ func worker_input_event(worker: StateMachine, event: InputEvent):
 			if !Input.is_action_pressed("multi"):
 				clear_selected_workers()
 			select_worker(worker)
+
+func site_input_event(site: TaskSite, event: InputEvent):
+	if event.is_action("select") and event.pressed and site.worker == null and selected_workers.size() > 0 and hovered_objects.size() == 1:
+		for worker in selected_workers:
+			navigate(worker, site.map_position)
+			worker.site = site
 
 func object_mouse_entered(object: Node2D):
 	hovered_objects[object] = null
