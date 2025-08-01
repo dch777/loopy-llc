@@ -6,6 +6,8 @@ class_name Move extends State
 @export var error_radius: float = 16.0
 
 func enter():
+	fsm.play_animation("walk")
+
 	fsm.site = null
 	if fsm.path.size() > 0:
 		fsm.manager.astar.set_point_solid(fsm.path[-1])

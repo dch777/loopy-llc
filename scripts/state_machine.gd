@@ -12,8 +12,7 @@ class_name StateMachine extends Node2D
 
 @onready var manager: Manager = get_parent()
 
-@onready var animation_player = $AnimationPlayer
-@onready var anim_speed = 1.0
+@onready var animation_player = $AnimatedSprite2D
 @onready var initial_look_direction = 1.0
 @onready var look_direction = initial_look_direction
 
@@ -22,6 +21,7 @@ var state_stack: Array[State] = []
 
 var max_energy: int
 var modifiers: Array[int]
+@onready var emotion: String = "default"
 
 var selected: bool
 var path: Array
@@ -48,7 +48,6 @@ func _ready():
 	global_position = get_node("../ground").map_to_local(map_position)
 
 func _process(delta: float):
-	animation_player.advance(delta * anim_speed)
 	if state_stack.size() > 0:
 		state_stack[0].update(delta)
 
@@ -77,6 +76,12 @@ func change_state(next_state: String, pop: bool):
 		state_stack.push_front(states[next_state])
 	if state_stack.size() > 0:
 		state_stack[0].enter()
+
+func play_animation(name: StringName, custom_speed: float = 1.0, from_end: bool = false):
+	animation_player.play("%s_%s" % [emotion, name], custom_speed, from_end)
+
+func pause_animation():
+	animation_player.pause()
 
 func input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	manager.worker_input_event(self, event)
