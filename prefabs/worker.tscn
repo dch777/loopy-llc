@@ -11,6 +11,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ji5e"]
 
 [node name="Worker" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_ont85")
 entry_state = "idle"
 navigate_state = "walk"

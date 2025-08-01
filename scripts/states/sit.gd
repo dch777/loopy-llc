@@ -16,7 +16,6 @@ func update(_delta: float):
 
 	if (fsm.global_position - fsm.site.seat.global_position).length() < 0.1:
 		completed = true
-		print("AAA")
 		finished.emit("work", true)
 
 func exit():

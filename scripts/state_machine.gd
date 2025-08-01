@@ -63,7 +63,6 @@ func push_state(next_state: String):
 	state_stack[0].enter()
 
 func change_state(next_state: String, pop: bool):
-	print(state_stack)
 	if pop:
 		state_stack.pop_front().exit()
 	else:
