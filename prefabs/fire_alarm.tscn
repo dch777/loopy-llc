@@ -1,19 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://clclm27bo4vjm"]
+[gd_scene load_steps=8 format=3 uid="uid://clclm27bo4vjm"]
 
-[ext_resource type="Script" path="res://scripts/task_site.gd" id="1_6elti"]
+[ext_resource type="Script" uid="uid://ygipel88d4i5" path="res://scripts/task_site.gd" id="1_6elti"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="1_85dsm"]
-[ext_resource type="Texture2D" uid="uid://y0e3na8v6vgj" path="res://assets/tilemaps/more_office_supplements.png" id="2_6elti"]
+[ext_resource type="Script" uid="uid://bnuxm2ghjpf18" path="res://scripts/alarm_manager.gd" id="2_6elti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnit4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_85dsm"]
-atlas = ExtResource("2_6elti")
-region = Rect2(0, 16, 16, 16)
+[sub_resource type="Animation" id="Animation_6elti"]
+resource_name = "alarm"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AlarmLight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_5jiup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AlarmLight:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jiup"]
+_data = {
+&"RESET": SubResource("Animation_5jiup"),
+&"alarm": SubResource("Animation_6elti")
+}
 
 [node name="FireAlarm" type="Node2D"]
 script = ExtResource("1_6elti")
 target_offset = Vector2i(1, 0)
+facing_up = true
 facing_left = true
+
+[node name="AlarmManager" type="Node2D" parent="."]
+script = ExtResource("2_6elti")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -21,13 +59,26 @@ facing_left = true
 shape = SubResource("RectangleShape2D_cnit4")
 
 [node name="seat" type="Sprite2D" parent="."]
-position = Vector2(13, 2)
+position = Vector2(6, 0)
 texture = ExtResource("1_85dsm")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5jiup")
+}
+
+[node name="AlarmLight" type="Node2D" parent="."]
 visible = false
-offset_left = -8.0
-offset_top = -6.0
-offset_right = 8.0
-offset_bottom = 10.0
-texture = SubResource("AtlasTexture_85dsm")
+position = Vector2(0, -1)
+
+[node name="Polygon2D" type="Polygon2D" parent="AlarmLight"]
+color = Color(0.788235, 0.141176, 0.392157, 0.501961)
+polygon = PackedVector2Array(0, 0, -24, -128, 24, -128)
+
+[node name="Polygon2D2" type="Polygon2D" parent="AlarmLight"]
+color = Color(0.788235, 0.141176, 0.392157, 0.501961)
+polygon = PackedVector2Array(0, 0, -24, 128, 24, 128)

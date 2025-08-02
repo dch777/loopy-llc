@@ -37,6 +37,7 @@ func _ready() -> void:
 	$LineCover.mouse_exited.connect(manager.object_mouse_exited.bind(self))
 
 	GameTime.start_game_time()
+	GameAudio.play_audio_loop(load("res://assets/audio/Beach House.ogg"))
 
 func _process(delta: float) -> void:
 	# Move hour marker across

@@ -1,0 +1,105 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0f4ruwiout1c"]
+
+[ext_resource type="Texture2D" uid="uid://cnvoq162cf54r" path="res://assets/sprites/car.png" id="1_io18p"]
+[ext_resource type="Script" uid="uid://cqc7irhxxdn34" path="res://scripts/road.gd" id="1_w6yu3"]
+
+[sub_resource type="Curve2D" id="Curve2D_io18p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_io18p"]
+resource_name = "drive"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Car:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 9.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_w6yu3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path2D/PathFollow2D/Car:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w6yu3"]
+_data = {
+&"RESET": SubResource("Animation_w6yu3"),
+&"drive": SubResource("Animation_io18p")
+}
+
+[node name="Road" type="Node2D"]
+script = ExtResource("1_w6yu3")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_io18p")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(140.253, 0)
+progress = 140.258
+rotates = false
+
+[node name="Car" type="Area2D" parent="Path2D/PathFollow2D"]
+visible = false
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Car"]
+texture = ExtResource("1_io18p")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Path2D/PathFollow2D/Car"]
+polygon = PackedVector2Array(-19, -2, -19, 6, -14, 10, 14, 10, 19, 6, 19, -2, 10, -2, 10, -11, -14, -11, -14, -2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_w6yu3")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="Path2D/PathFollow2D/Car" to="." method="_on_car_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
