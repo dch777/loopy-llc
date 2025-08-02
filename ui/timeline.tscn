@@ -31,15 +31,30 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2a5mp")
 
+[node name="LineCover" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 88.0
+color = Color(0, 0, 0, 0.501961)
+
+[node name="FullCover" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 88.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.501961)
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Dropdown" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 0
 offset_left = 32.0
-offset_top = 64.0
+offset_top = 56.0
 offset_right = 48.0
-offset_bottom = 80.0
+offset_bottom = 72.0
+scale = Vector2(1.3, 1.3)
 texture_normal = ExtResource("2_3thbc")
 
 [node name="HourMarker" type="Node2D" parent="."]
@@ -61,7 +76,20 @@ visible = false
 [node name="Hour1" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(128, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -69,6 +97,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -77,7 +118,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour2" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(256, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -85,6 +139,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -93,7 +160,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour3" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(384, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -101,6 +181,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -109,7 +202,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour4" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(512, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -117,6 +223,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -125,7 +244,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour5" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(640, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -133,6 +265,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -141,7 +286,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour6" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(768, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -149,6 +307,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
@@ -157,7 +328,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Hour7" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(896, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -170,10 +354,36 @@ grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
 metadata/_edit_use_anchors_ = true
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
 [node name="Hour8" type="Node2D" parent="Line2D/Sections"]
 position = Vector2(1024, 32)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
+[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 11.0
+offset_right = -32.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
 custom_minimum_size = Vector2(16, 16)
 anchors_preset = 5
 anchor_left = 0.5
@@ -181,6 +391,19 @@ anchor_right = 0.5
 offset_left = -12.0
 offset_top = 11.0
 offset_right = 4.0
+offset_bottom = 27.0
+grow_horizontal = 2
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 11.0
+offset_right = 40.0
 offset_bottom = 27.0
 grow_horizontal = 2
 scale = Vector2(1.5, 1.5)
