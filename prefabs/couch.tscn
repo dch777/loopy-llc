@@ -5,12 +5,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kblhn"]
 size = Vector2(18, 20)
 
-[node name="Desk" type="Node2D" node_paths=PackedStringArray("seats")]
+[node name="Couch" type="Node2D" node_paths=PackedStringArray("seats")]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_l32fr")
 seats = [NodePath("Area2D"), NodePath("Area2D2")]
 target_offsets = Array[Vector2i]([Vector2i(0, 1), Vector2i(1, 1)])
+workable = false
 animation = "sit"
 exhaustion_rate = -0.2
 

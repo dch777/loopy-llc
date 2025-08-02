@@ -37,7 +37,10 @@ func _ready() -> void:
 			var new_interactable = interaction_scene.instantiate()
 			new_interactable.map_position = cell
 			add_child(new_interactable)
-
+			
+			# Connect task finish to timeline
+			new_interactable.connect("finished_task", Callable($"../CanvasLayer/Timeline", "_on_finished_task"))
+			
 	for x in range(astar.region.position.x, astar.region.end.x):
 		for y in range(astar.region.position.y, astar.region.end.y):
 			var cell = Vector2(x, y)
