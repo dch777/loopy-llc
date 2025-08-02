@@ -19,8 +19,8 @@ func _ready() -> void:
 	$Area2D.input_event.connect(self.input_event)
 	$Area2D.mouse_entered.connect(self.mouse_entered)
 	$Area2D.mouse_exited.connect(self.mouse_exited)
-
-	seat.visible = false
+	
+	$seat.hide()
 
 func input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	manager.site_input_event(self, event)

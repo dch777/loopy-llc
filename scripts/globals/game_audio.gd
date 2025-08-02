@@ -20,7 +20,6 @@ func stop_audio(stream_player: AudioStreamPlayer2D) -> void:
 	stream_player.queue_free()
 
 func auto_restart_audio(stream_player: AudioStreamPlayer2D) -> void:
-	print(stream_player)
 	stream_player.play()
 
 func auto_remove_audio(stream_player: AudioStreamPlayer2D) -> void:

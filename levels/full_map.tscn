@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://coptgvk3cs8ip"]
+[gd_scene load_steps=15 format=4 uid="uid://coptgvk3cs8ip"]
 
 [ext_resource type="Material" uid="uid://cwen3e6wnkqa5" path="res://assets/shaders/hover.tres" id="1_48ctx"]
 [ext_resource type="Texture2D" uid="uid://bepxq153y0dak" path="res://assets/tilemaps/floor.png" id="2_s7fqd"]
@@ -6,9 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cx2bnk3j8oe53" path="res://prefabs/desk.tscn" id="4_1pp24"]
 [ext_resource type="Texture2D" uid="uid://brv4pe2wmpqjn" path="res://assets/tilemaps/office_stuff.png" id="5_ox4el"]
 [ext_resource type="Texture2D" uid="uid://c2fx67xr04vkp" path="res://assets/tilemaps/office_supplements.png" id="6_48ctx"]
-[ext_resource type="PackedScene" uid="uid://clclm27bo4vjm" path="res://prefabs/fire_alarm.tscn" id="7_8hvqm"]
 [ext_resource type="Texture2D" uid="uid://bfdgx8042wteo" path="res://assets/tilemaps/walls.png" id="7_uhypn"]
-[ext_resource type="Texture2D" uid="uid://y0e3na8v6vgj" path="res://assets/tilemaps/more_office_supplements.png" id="8_1pp24"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48ctx"]
 texture = ExtResource("2_s7fqd")
@@ -62,18 +60,11 @@ texture = ExtResource("6_48ctx")
 1:1/0 = 0
 0:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ox4el"]
-texture = ExtResource("8_1pp24")
-0:0/0 = 0
-0:1/0 = 0
-0:1/0/custom_data_0 = ExtResource("7_8hvqm")
-
 [sub_resource type="TileSet" id="TileSet_w4rbo"]
 custom_data_layer_0/name = "interaction_scene"
 custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_s7fqd")
 sources/1 = SubResource("TileSetAtlasSource_8hvqm")
-sources/2 = SubResource("TileSetAtlasSource_ox4el")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1pp24"]
 texture = ExtResource("7_uhypn")

@@ -30,6 +30,7 @@ func _ready() -> void:
 	#add_tasks(schedule)
 	
 	GameTime.start_game_time()
+	GameAudio.play_audio_loop(load("res://assets/audio/Beach House.ogg"))
 
 func _process(delta: float) -> void:
 	# Move hour marker across
