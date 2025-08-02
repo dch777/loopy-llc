@@ -3,20 +3,19 @@
 [ext_resource type="Script" uid="uid://ygipel88d4i5" path="res://scripts/task_site.gd" id="2_kblhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kblhn"]
-size = Vector2(36, 20)
+size = Vector2(36, 36)
 
 [node name="Desk" type="Node2D" node_paths=PackedStringArray("seats")]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("2_kblhn")
 seats = [NodePath("Area2D")]
-target_offsets = Array[Vector2i]([Vector2i(0, 1)])
-facing_up = true
+target_offsets = Array[Vector2i]([Vector2i(2, 1)])
 facing_left = true
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(16, 0)
+position = Vector2(16, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-8, 0)
+position = Vector2(-8, 4)
 shape = SubResource("RectangleShape2D_kblhn")

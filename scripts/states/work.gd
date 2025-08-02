@@ -7,7 +7,6 @@ class_name Work extends State
 func enter():
 	fsm.facing_up = fsm.site.facing_up
 	fsm.facing_left = fsm.site.facing_left
-	completed = true
 
 func update(delta: float):
 	fsm.play_animation(fsm.site.animation)
@@ -21,7 +20,7 @@ func update(delta: float):
 	
 	fsm.exhaustion += fsm.site.exhaustion_rate * delta
 	if fsm.exhaustion > 0.9 and !fsm.selected:
-		completed = false
+		completed = true
 		finished.emit("sleep", false)
 	elif fsm.exhaustion > 0.7:
 		fsm.emotion = "tired"
@@ -29,7 +28,7 @@ func update(delta: float):
 		fsm.emotion = "default"
 
 func exit():
-	if completed:
+	if !completed and fsm.site != null:
 		fsm.site.workers.erase(fsm.seat_idx)
 		fsm.seat_idx = -1
 		fsm.site = null

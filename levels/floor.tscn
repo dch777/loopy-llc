@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b5awawncdbbvj"]
+[gd_scene load_steps=27 format=4 uid="uid://b5awawncdbbvj"]
 
 [ext_resource type="Script" uid="uid://bam3dxtmui6rd" path="res://scripts/camera.gd" id="1_5bl5m"]
 [ext_resource type="Texture2D" uid="uid://brv4pe2wmpqjn" path="res://assets/tilemaps/office_stuff.png" id="1_umnu8"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://t12grxun0rgj" path="res://prefabs/worker.tscn" id="5_uudy6"]
 [ext_resource type="PackedScene" uid="uid://cx2bnk3j8oe53" path="res://prefabs/desk.tscn" id="5_v2yo8"]
 [ext_resource type="PackedScene" uid="uid://clclm27bo4vjm" path="res://prefabs/fire_alarm.tscn" id="8_f53xc"]
+[ext_resource type="Texture2D" uid="uid://c2fx67xr04vkp" path="res://assets/tilemaps/office_supplements.png" id="9_3gq6l"]
 [ext_resource type="Texture2D" uid="uid://cvg5rmuammq5q" path="res://assets/tilemaps/more_office_supplements.png" id="9_ef4lf"]
 [ext_resource type="Shader" uid="uid://d0runvjs0o6wk" path="res://assets/shaders/status_bar.gdshader" id="12_0mrew"]
 [ext_resource type="PackedScene" uid="uid://b0f4ruwiout1c" path="res://prefabs/road.tscn" id="14_f53xc"]
@@ -61,6 +62,14 @@ texture = ExtResource("1_umnu8")
 1:3/0 = 0
 1:4/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_32755"]
+texture = ExtResource("9_3gq6l")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gilyd"]
 texture = ExtResource("9_ef4lf")
 0:0/0 = 0
@@ -72,6 +81,7 @@ custom_data_layer_0/name = "interaction_scene"
 custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_umnu8")
 sources/2 = SubResource("TileSetAtlasSource_gilyd")
+sources/1 = SubResource("TileSetAtlasSource_32755")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88fx8"]
 texture = ExtResource("4_n2q82")
@@ -113,7 +123,7 @@ tile_set = SubResource("TileSet_qpuy5")
 
 [node name="office" type="TileMapLayer" parent="manager"]
 z_as_relative = false
-tile_map_data = PackedByteArray("AAD1//n/AAAAAAUAAAD1//r/AAAAAAsAAAD1/wAAAAAAAAsAAAD1/wUAAAAAAAUAAAD1/wYAAAAAAAsAAAD2//r/AAABAAsAAAD2/wAAAAABAAsAAAD2/wYAAAABAAsAAAD6//n/AAAAAAUAAAD6//r/AAAAAAsAAAD6////AAAAAAUAAAD6/wAAAAAAAAsAAAD6/wUAAAAAAAUAAAD6/wYAAAAAAAsAAAD7//r/AAABAAsAAAD7/wAAAAABAAsAAAD7/wYAAAABAAsAAAD+/wAAAAAAAAAAAAD///r/AAAAAAMAAAD//wAAAAAAAAMAAAD//wYAAAAAAAMAAAAAAPr/AAABAAMAAAAAAAAAAAABAAMAAAAAAAYAAAABAAMAAAABAPr/AAAAAAEAAAABAAYAAAAAAAEAAAAEAPn/AAAAAAkAAAAEAPr/AAAAAAsAAAAEAP//AAAAAAkAAAAEAAAAAAAAAAsAAAAEAAUAAAAAAAkAAAAEAAYAAAAAAAsAAAAFAPn/AAAAAAkAAAAFAPr/AAABAAsAAAAFAP//AAABAAkAAAAFAAAAAAABAAsAAAAFAAUAAAABAAkAAAAFAAYAAAABAAsAAAAJAPn/AAAAAAkAAAAJAPr/AAAAAAsAAAAJAP//AAABAAkAAAAJAAAAAAAAAAsAAAAJAAUAAAAAAAkAAAAJAAYAAAAAAAsAAAAKAPn/AAABAAkAAAAKAPr/AAABAAsAAAAKAP//AAAAAAkAAAAKAAAAAAABAAsAAAAKAAUAAAAAAAkAAAAKAAYAAAABAAsAAAD1////AAAAAAUAAADv//P/AgAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAD1//n/AAAAAAUAAAD1//r/AAAAAAoAAAD1/wAAAAAAAAoAAAD1/wUAAAAAAAUAAAD1/wYAAAAAAAoAAAD2//r/AQAAAAIAAAD2/wAAAQAAAAIAAAD2/wYAAQAAAAIAAAD6//n/AAAAAAUAAAD6//r/AAAAAAoAAAD6////AAAAAAUAAAD6/wAAAAAAAAoAAAD6/wUAAAAAAAUAAAD6/wYAAAAAAAoAAAD7//r/AQAAAAIAAAD7/wAAAQAAAAIAAAD7/wYAAQAAAAIAAAD+/wAAAAAAAAAAAAD///r/AAAAAAMAAAD//wAAAAAAAAMAAAD//wYAAAAAAAMAAAAAAPr/AAABAAMAAAAAAAAAAAABAAMAAAAAAAYAAAABAAMAAAABAPr/AAAAAAEAAAABAAYAAAAAAAEAAAAEAPn/AAAAAAkAAAAEAPr/AAAAAAsAAAAEAP//AAAAAAkAAAAEAAAAAAAAAAsAAAAEAAUAAAAAAAkAAAAEAAYAAAAAAAsAAAAFAPn/AAAAAAkAAAAFAPr/AAABAAsAAAAFAP//AAABAAkAAAAFAAAAAAABAAsAAAAFAAUAAAABAAkAAAAFAAYAAAABAAsAAAAJAPn/AAAAAAkAAAAJAPr/AAAAAAsAAAAJAP//AAABAAkAAAAJAAAAAAAAAAsAAAAJAAUAAAAAAAkAAAAJAAYAAAAAAAsAAAAKAPn/AAABAAkAAAAKAPr/AAABAAsAAAAKAP//AAAAAAkAAAAKAAAAAAABAAsAAAAKAAUAAAAAAAkAAAAKAAYAAAABAAsAAAD1////AAAAAAUAAADv//P/AgAAAAEAAAA=")
 tile_set = SubResource("TileSet_88fx8")
 
 [node name="walls" type="TileMapLayer" parent="manager"]

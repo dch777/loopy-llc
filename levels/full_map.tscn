@@ -80,6 +80,7 @@ sources/0 = SubResource("TileSetAtlasSource_1pp24")
 [node name="Node2D" type="Node2D"]
 
 [node name="o3" type="Node2D" parent="."]
+visible = false
 
 [node name="background" type="TileMapLayer" parent="o3"]
 z_as_relative = false
@@ -115,7 +116,6 @@ tile_map_data = PackedByteArray("AAD9//7/AAAAAAIAADADAP7/AAABAAEAADAJAP7/AAABAAE
 tile_set = SubResource("TileSet_5fesl")
 
 [node name="o1" type="Node2D" parent="."]
-visible = false
 
 [node name="background" type="TileMapLayer" parent="o1"]
 z_as_relative = false

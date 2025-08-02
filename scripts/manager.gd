@@ -97,6 +97,11 @@ func navigate(worker: StateMachine, dest: Vector2i, pop: bool = true) -> void:
 	if path.size() > 0:
 		if worker.path.size() > 0:
 			astar.set_point_solid(worker.path[-1], false)
+		if worker.site != null:
+			worker.site.workers.erase(worker.seat_idx)
+			worker.seat_idx = -1
+			worker.site = null
+			worker.seated = false
 		worker.path = path
 		worker.change_state(worker.navigate_state, pop)
 

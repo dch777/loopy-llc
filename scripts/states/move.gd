@@ -15,6 +15,12 @@ func enter():
 		fsm.manager.astar.set_point_solid(fsm.path[-1])
 
 func update(delta: float):
+	if fsm.path.size() == 0:
+		if fsm.site != null:
+			finished.emit("sit", true)
+		else:
+			finished.emit("idle", true)
+
 	var dir = fsm.manager.map_to_global(fsm.path[0]) - fsm.global_position
 
 	fsm.facing_up = dir.y < 0

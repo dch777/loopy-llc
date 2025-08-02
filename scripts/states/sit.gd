@@ -30,14 +30,15 @@ func update(_delta: float):
 	var dir: Vector2 = fsm.site.seats[fsm.seat_idx].global_position - fsm.global_position
 	fsm.global_position += speed * dir
 
-	if dir.length() < 0.1:
+	if dir.length() < 0.01:
 		completed = true
 		finished.emit("work", true)
 
 func exit():
-	fsm.seated = completed
 	if !completed and fsm.site != null:
 		fsm.site.workers.erase(fsm.seat_idx)
 		fsm.seat_idx = -1
 		fsm.site = null
 		fsm.seated = false
+	else:
+		fsm.seated = true
