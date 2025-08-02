@@ -8,15 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://c2fx67xr04vkp" path="res://assets/tilemaps/office_supplements.png" id="6_48ctx"]
 [ext_resource type="Texture2D" uid="uid://bfdgx8042wteo" path="res://assets/tilemaps/walls.png" id="7_uhypn"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gl21d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48ctx"]
 texture = ExtResource("2_s7fqd")
 0:0/0 = 0
 0:0/0/material = ExtResource("1_48ctx")
 
 [sub_resource type="TileSet" id="TileSet_51421"]
-sources/1 = SubResource("TileSetAtlasSource_gl21d")
+sources/1 = SubResource("TileSetAtlasSource_48ctx")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7pdp"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7fqd"]
 texture = ExtResource("5_ox4el")
 0:0/0 = 0
 1:0/0 = 0
@@ -52,7 +52,7 @@ texture = ExtResource("5_ox4el")
 0:12/0 = 0
 1:12/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s7fqd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8hvqm"]
 texture = ExtResource("6_48ctx")
 0:0/0 = 0
 1:0/0 = 0
@@ -63,10 +63,10 @@ texture = ExtResource("6_48ctx")
 [sub_resource type="TileSet" id="TileSet_w4rbo"]
 custom_data_layer_0/name = "interaction_scene"
 custom_data_layer_0/type = 24
-sources/0 = SubResource("TileSetAtlasSource_j7pdp")
-sources/1 = SubResource("TileSetAtlasSource_s7fqd")
+sources/0 = SubResource("TileSetAtlasSource_s7fqd")
+sources/1 = SubResource("TileSetAtlasSource_8hvqm")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_md7nu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1pp24"]
 texture = ExtResource("7_uhypn")
 0:0/0 = 0
 1:0/0 = 0
@@ -75,7 +75,7 @@ texture = ExtResource("7_uhypn")
 0:2/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_5fesl"]
-sources/0 = SubResource("TileSetAtlasSource_md7nu")
+sources/0 = SubResource("TileSetAtlasSource_1pp24")
 
 [node name="Node2D" type="Node2D"]
 
