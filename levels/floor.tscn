@@ -88,7 +88,6 @@ shader = ExtResource("12_0mrew")
 shader_parameter/happy_color = Color(0.357, 0.702, 0.38, 1)
 shader_parameter/tired_color = Color(0.969, 0.894, 0.463, 1)
 shader_parameter/angry_color = Color(0.788, 0.141, 0.392, 1)
-shader_parameter/happy_size = 0.7
 shader_parameter/tired_size = 0.2
 shader_parameter/angry_size = 0.1
 
@@ -100,10 +99,11 @@ script = ExtResource("1_5bl5m")
 zoom_max = 10.0
 zoom_min = 1.6
 
-[node name="manager" type="Node2D" parent="." node_paths=PackedStringArray("camera")]
+[node name="manager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "status_bar")]
 z_index = 1
 script = ExtResource("2_aawf1")
 camera = NodePath("../Camera2D")
+status_bar = NodePath("../CanvasLayer/StatusBar")
 
 [node name="background" type="TileMapLayer" parent="manager"]
 z_as_relative = false

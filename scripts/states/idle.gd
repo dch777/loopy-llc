@@ -7,5 +7,5 @@ func update(delta: float):
 	
 	if fsm.exhaustion > 0.9 and !fsm.selected:
 		finished.emit("sleep", false)
-	elif fsm.exhaustion > 0.5:
+	elif fsm.exhaustion > 0.7:
 		fsm.emotion = "tired"

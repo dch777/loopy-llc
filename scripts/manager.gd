@@ -4,7 +4,7 @@ class_name Manager extends Node2D
 
 @export var diagonal_mode: AStarGrid2D.DiagonalMode = AStarGrid2D.DiagonalMode.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 @export var camera: Camera2D
-@export var StatusBar: Node
+@export var status_bar: Node
 
 @onready var astar = AStarGrid2D.new()
 @onready var background: TileMapLayer = $background
@@ -51,6 +51,13 @@ func _process(delta: float) -> void:
 	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
 	hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
+
+	if selected_workers.size() == 1:
+		status_bar.visible = true
+		status_bar.material.set_shader_parameter("tired_size", selected_workers.keys()[0].exhaustion)
+		status_bar.material.set_shader_parameter("angry_size", 0.0)
+	else:
+		status_bar.visible = false
 
 	if select_timer < 0.5 and select_rect.size.length() <= 32 and selected_workers.size() > 0 and hovered_objects.size() == 0 and astar.is_in_boundsv(hovered_cell) and !astar.is_point_solid(hovered_cell):
 		hover_shader.set_shader_parameter("active", 1.0)

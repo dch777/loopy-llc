@@ -2,7 +2,7 @@
 
 class_name Sleep extends State
 
-@export_range(-1.0, 1.0, 0.01, "suffix:%/s") var recovery_rate: float = 0.003
+@export_range(-1.0, 1.0, 0.01, "suffix:%/s") var recovery_rate: float = 0.01
 @export_range(-1.0, 1.0, 0.01, "suffix:%/s") var wake_threshold: float = 0.5
 
 func enter():
