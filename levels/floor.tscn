@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://b5awawncdbbvj"]
+[gd_scene load_steps=24 format=4 uid="uid://b5awawncdbbvj"]
 
 [ext_resource type="Script" uid="uid://bam3dxtmui6rd" path="res://scripts/camera.gd" id="1_5bl5m"]
 [ext_resource type="Texture2D" uid="uid://brv4pe2wmpqjn" path="res://assets/tilemaps/office_stuff.png" id="1_umnu8"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://ok7om4qojnnt" path="res://prefabs/couch.tscn" id="5_n3co8"]
 [ext_resource type="PackedScene" uid="uid://t12grxun0rgj" path="res://prefabs/worker.tscn" id="5_uudy6"]
 [ext_resource type="PackedScene" uid="uid://cx2bnk3j8oe53" path="res://prefabs/desk.tscn" id="5_v2yo8"]
+[ext_resource type="PackedScene" uid="uid://clclm27bo4vjm" path="res://prefabs/fire_alarm.tscn" id="8_f53xc"]
+[ext_resource type="Texture2D" uid="uid://y0e3na8v6vgj" path="res://assets/tilemaps/more_office_supplements.png" id="9_ef4lf"]
+[ext_resource type="Shader" uid="uid://d0runvjs0o6wk" path="res://assets/shaders/status_bar.gdshader" id="12_0mrew"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uudy6"]
 texture = ExtResource("2_88fx8")
@@ -56,6 +59,12 @@ texture = ExtResource("1_umnu8")
 0:12/0 = 0
 1:12/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3gq6l"]
+texture = ExtResource("9_ef4lf")
+0:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_0 = ExtResource("8_f53xc")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n2q82"]
 texture = ExtResource("3_n2q82")
 0:0/0 = 0
@@ -65,6 +74,7 @@ custom_data_layer_0/name = "interaction_scene"
 custom_data_layer_0/type = 24
 sources/0 = SubResource("TileSetAtlasSource_umnu8")
 sources/5 = SubResource("TileSetAtlasSource_n2q82")
+sources/1 = SubResource("TileSetAtlasSource_3gq6l")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_88fx8"]
 texture = ExtResource("4_n2q82")
@@ -76,6 +86,15 @@ texture = ExtResource("4_n2q82")
 
 [sub_resource type="TileSet" id="TileSet_n2q82"]
 sources/0 = SubResource("TileSetAtlasSource_88fx8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gilyd"]
+shader = ExtResource("12_0mrew")
+shader_parameter/happy_color = Color(0.357, 0.702, 0.38, 1)
+shader_parameter/tired_color = Color(0.969, 0.894, 0.463, 1)
+shader_parameter/angry_color = Color(0.788, 0.141, 0.392, 1)
+shader_parameter/happy_size = 0.7
+shader_parameter/tired_size = 0.2
+shader_parameter/angry_size = 0.1
 
 [node name="floor" type="Node2D"]
 
@@ -96,7 +115,7 @@ tile_set = SubResource("TileSet_qpuy5")
 
 [node name="office" type="TileMapLayer" parent="manager"]
 z_as_relative = false
-tile_map_data = PackedByteArray("AAD1//n/AAAAAAUAAAD1//r/AAAAAAsAAAD1/wAAAAAAAAsAAAD1/wUAAAAAAAUAAAD1/wYAAAAAAAsAAAD2//r/AAABAAsAAAD2/wAAAAABAAsAAAD2/wYAAAABAAsAAAD6//n/AAAAAAUAAAD6//r/AAAAAAsAAAD6////AAAAAAUAAAD6/wAAAAAAAAsAAAD6/wUAAAAAAAUAAAD6/wYAAAAAAAsAAAD7//r/AAABAAsAAAD7/wAAAAABAAsAAAD7/wYAAAABAAsAAAD+/wAAAAAAAAAAAAD///r/AAAAAAMAAAD//wAAAAAAAAMAAAD//wYAAAAAAAMAAAAAAPr/AAABAAMAAAAAAAAAAAABAAMAAAAAAAYAAAABAAMAAAABAPr/AAAAAAEAAAABAAYAAAAAAAEAAAAEAPn/AAAAAAkAAAAEAPr/AAAAAAsAAAAEAP//AAAAAAkAAAAEAAAAAAAAAAsAAAAEAAUAAAAAAAkAAAAEAAYAAAAAAAsAAAAFAPn/AAAAAAkAAAAFAPr/AAABAAsAAAAFAP//AAABAAkAAAAFAAAAAAABAAsAAAAFAAUAAAABAAkAAAAFAAYAAAABAAsAAAAJAPn/AAAAAAkAAAAJAPr/AAAAAAsAAAAJAP//AAABAAkAAAAJAAAAAAAAAAsAAAAJAAUAAAAAAAkAAAAJAAYAAAAAAAsAAAAKAPn/AAABAAkAAAAKAPr/AAABAAsAAAAKAP//AAAAAAkAAAAKAAAAAAABAAsAAAAKAAUAAAAAAAkAAAAKAAYAAAABAAsAAAD9//T/AAAAAAoAAAACAPT/AAAAAAoAAAD9//P/BQAAAAAAAAACAPP/BQAAAAAAAAD1////AAAAAAUAAAA=")
+tile_map_data = PackedByteArray("AAD1//n/AAAAAAUAAAD1//r/AAAAAAsAAAD1/wAAAAAAAAsAAAD1/wUAAAAAAAUAAAD1/wYAAAAAAAsAAAD2//r/AAABAAsAAAD2/wAAAAABAAsAAAD2/wYAAAABAAsAAAD6//n/AAAAAAUAAAD6//r/AAAAAAsAAAD6////AAAAAAUAAAD6/wAAAAAAAAsAAAD6/wUAAAAAAAUAAAD6/wYAAAAAAAsAAAD7//r/AAABAAsAAAD7/wAAAAABAAsAAAD7/wYAAAABAAsAAAD+/wAAAAAAAAAAAAD///r/AAAAAAMAAAD//wAAAAAAAAMAAAD//wYAAAAAAAMAAAAAAPr/AAABAAMAAAAAAAAAAAABAAMAAAAAAAYAAAABAAMAAAABAPr/AAAAAAEAAAABAAYAAAAAAAEAAAAEAPn/AAAAAAkAAAAEAPr/AAAAAAsAAAAEAP//AAAAAAkAAAAEAAAAAAAAAAsAAAAEAAUAAAAAAAkAAAAEAAYAAAAAAAsAAAAFAPn/AAAAAAkAAAAFAPr/AAABAAsAAAAFAP//AAABAAkAAAAFAAAAAAABAAsAAAAFAAUAAAABAAkAAAAFAAYAAAABAAsAAAAJAPn/AAAAAAkAAAAJAPr/AAAAAAsAAAAJAP//AAABAAkAAAAJAAAAAAAAAAsAAAAJAAUAAAAAAAkAAAAJAAYAAAAAAAsAAAAKAPn/AAABAAkAAAAKAPr/AAABAAsAAAAKAP//AAAAAAkAAAAKAAAAAAABAAsAAAAKAAUAAAAAAAkAAAAKAAYAAAABAAsAAAD9//T/AAAAAAoAAAACAPT/AAAAAAoAAAD9//P/BQAAAAAAAAACAPP/BQAAAAAAAAD1////AAAAAAUAAADv//P/AQAAAAEAAAA=")
 tile_set = SubResource("TileSet_88fx8")
 
 [node name="walls" type="TileMapLayer" parent="manager"]
@@ -138,3 +157,10 @@ spawn_position = Vector2i(1, 5)
 
 [node name="Timeline" parent="CanvasLayer" node_paths=PackedStringArray("manager") instance=ExtResource("2_d5tcp")]
 manager = NodePath("../../manager")
+
+[node name="StatusBar" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_gilyd")
+offset_left = 256.0
+offset_top = 608.0
+offset_right = 896.0
+offset_bottom = 624.0

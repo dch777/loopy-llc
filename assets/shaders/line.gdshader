@@ -7,7 +7,7 @@ void fragment(){
 	float l = length * UV.x;
 	float w = width * UV.y;
 	float speed = 3.0;
-	
+
 	if ((length - l) < width) {
 		COLOR = vec4(1.0);
 	} else if (l > 10.0) {
