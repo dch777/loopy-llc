@@ -25,6 +25,7 @@ var state_stack: Array[State] = []
 
 var max_energy: int
 var modifiers: Array[int]
+var control_locked: bool = false
 
 var selected: bool
 var path: Array
@@ -104,7 +105,8 @@ func pause_animation():
 	animation_player.pause()
 
 func input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	manager.worker_input_event(self, event)
+	if !control_locked:
+		manager.worker_input_event(self, event)
 
 func mouse_entered():
 	manager.object_mouse_entered(self)

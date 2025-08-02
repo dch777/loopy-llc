@@ -1,11 +1,15 @@
-[gd_scene load_steps=229 format=3 uid="uid://t12grxun0rgj"]
+[gd_scene load_steps=233 format=3 uid="uid://t12grxun0rgj"]
 
 [ext_resource type="Script" uid="uid://b0pgwooqqg7dc" path="res://scripts/state_machine.gd" id="1_ont85"]
+[ext_resource type="Texture2D" uid="uid://cuk03h16xosp1" path="res://assets/sprites/just_white.png" id="2_25am3"]
 [ext_resource type="Texture2D" uid="uid://b2bo5n7drc3ww" path="res://assets/sprites/worker_sheet.png" id="2_de3m2"]
+[ext_resource type="Material" uid="uid://tr8hcg8ki60e" path="res://assets/shaders/select.tres" id="2_fq56n"]
 [ext_resource type="Script" uid="uid://bug6s7nrs8poq" path="res://scripts/states/move.gd" id="3_moqo0"]
 [ext_resource type="Script" uid="uid://f4elg5ii5pan" path="res://scripts/states/work.gd" id="4_de3m2"]
 [ext_resource type="Script" uid="uid://m03hb5fmw00k" path="res://scripts/states/sit.gd" id="5_xmpa0"]
 [ext_resource type="Script" uid="uid://c1iytlc6xycfj" path="res://scripts/states/idle.gd" id="6_de3m2"]
+[ext_resource type="AudioStream" uid="uid://mogciirb1faf" path="res://assets/audio/aw_come_on.mp3" id="6_t2wst"]
+[ext_resource type="AudioStream" uid="uid://bpcd3fnjklhdx" path="res://assets/audio/what_the.mp3" id="7_25am3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ji5e"]
 
@@ -1729,10 +1733,16 @@ antialiased = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_5ji5e")
 
+[node name="SelectBox" type="Sprite2D" parent="."]
+visible = false
+material = ExtResource("2_fq56n")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_25am3")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_qnj8w")
-animation = &"default_up_right_jump"
+animation = &"all_sprites"
 
 [node name="states" type="Node2D" parent="."]
 
@@ -1746,6 +1756,7 @@ metadata/_custom_type_script = "uid://f4elg5ii5pan"
 
 [node name="sit" type="Node2D" parent="states"]
 script = ExtResource("5_xmpa0")
+anger_noises = Array[AudioStream]([ExtResource("6_t2wst"), ExtResource("7_25am3")])
 metadata/_custom_type_script = "uid://m03hb5fmw00k"
 
 [node name="idle" type="Node2D" parent="states"]

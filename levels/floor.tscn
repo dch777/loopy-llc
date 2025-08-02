@@ -81,7 +81,7 @@ sources/0 = SubResource("TileSetAtlasSource_88fx8")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.6, 1.6)
 script = ExtResource("1_5bl5m")
-zoom_max = 5.0
+zoom_max = 10.0
 zoom_min = 1.0
 
 [node name="manager" type="Node2D" parent="."]

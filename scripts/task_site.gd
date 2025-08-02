@@ -5,13 +5,21 @@ class_name TaskSite extends Node2D
 @export var target_offset: Vector2i = Vector2(0, 0)
 @export var facing_up: bool = false
 @export var facing_left: bool = false
+
 @export var animation: String = "idle"
+@export var sound: AudioStream = preload("res://assets/audio/mechanical-keyboard-typing-sound-effect-hd-379363.mp3")
+
+@export var sound_cooldown: float = 10.0
+@export_range(0.0, 1.0) var sound_probability: float = 0.1
 
 var map_position: Vector2i = Vector2(0, 0)
 
 @onready var manager: Manager = get_parent()
 @onready var seat: Node2D = $seat
 var worker: StateMachine = null
+
+var completion: float = 0.0
+@export_range(0.0, 1.0, 0.01, "suffix:%/s") var exhaustion_rate: float = 0.01
 
 func _ready() -> void:
 	global_position = get_node("../background").map_to_local(map_position)

@@ -3,12 +3,15 @@
 class_name Sit extends State
 
 @export_range(0, 10, 0.01, "suffix:tiles/s") var speed = 0.07
+@export var anger_noises: Array[AudioStream] = []
 
 var jumping: bool = false
 
 func enter():
 	if fsm.site.worker != null:
 		fsm.site = null
+		if randf() <= 0.5:
+			GameAudio.play_audio_once(anger_noises[randi() % anger_noises.size()], 2.0)
 		finished.emit("idle", true)
 	else:
 		fsm.site.worker = fsm
@@ -29,4 +32,7 @@ func update(_delta: float):
 
 func exit():
 	fsm.seated = completed
-	print(completed)
+	if !completed and fsm.site != null:
+		fsm.site.worker = null
+		fsm.site = null
+		fsm.seated = false

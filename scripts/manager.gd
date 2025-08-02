@@ -20,6 +20,7 @@ var select_origin: Vector2
 var select_rect: Rect2
 
 func _ready() -> void:
+	GameAudio.play_audio_loop(preload("res://assets/audio/Beach House.ogg"))
 	astar.set_diagonal_mode(diagonal_mode)
 	astar.set_region(background.get_used_rect())
 	astar.update()
