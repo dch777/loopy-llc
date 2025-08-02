@@ -3,6 +3,8 @@
 class_name Manager extends Node2D
 
 @export var diagonal_mode: AStarGrid2D.DiagonalMode = AStarGrid2D.DiagonalMode.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
+@export var camera: Camera2D
+@export var StatusBar: Node
 
 @onready var astar = AStarGrid2D.new()
 @onready var background: TileMapLayer = $background
@@ -94,6 +96,10 @@ func navigate(worker: StateMachine, dest: Vector2i, pop: bool = true) -> void:
 func map_to_global(vec: Vector2) -> Vector2:
 	return to_global(background.map_to_local(vec))
 
+func follow(worker: StateMachine, zoom: float = 4.0):
+	camera.zoom_target = zoom
+	camera.position_target = worker.global_position
+
 func select_worker(worker: StateMachine):
 	selected_workers[worker] = null
 	worker.selected = true
@@ -122,11 +128,14 @@ func worker_input_event(worker: StateMachine, event: InputEvent):
 				clear_selected_workers()
 			select_worker(worker)
 
-func site_input_event(site: TaskSite, event: InputEvent):
-	if event.is_action("select") and event.pressed and site.worker == null and selected_workers.size() > 0 and hovered_objects.size() == 1:
+func site_input_event(site: TaskSite, event: InputEvent, seat_idx: int):
+	if event.is_action("select") and event.pressed and site.workers.size() < site.seats.size() and selected_workers.size() > 0 and hovered_objects.size() == 1:
 		for worker in selected_workers:
-			navigate(worker, site.map_position + site.target_offset)
+			if site.workers.has(seat_idx):
+				seat_idx = site.get_empty_seat()
+			navigate(worker, site.map_position + site.target_offsets[seat_idx])
 			worker.site = site
+			worker.seat_idx = seat_idx
 
 func object_mouse_entered(object: Node):
 	hovered_objects[object] = null

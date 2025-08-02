@@ -30,6 +30,7 @@ func update(delta: float):
 
 func exit():
 	if completed:
-		fsm.site.worker = null
+		fsm.site.workers.erase(fsm.seat_idx)
+		fsm.seat_idx = -1
 		fsm.site = null
 		fsm.seated = false

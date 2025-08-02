@@ -27,6 +27,7 @@ func update(delta: float):
 		dir = fsm.manager.map_to_global(fsm.path[0]) - fsm.global_position
 	elif fsm.path.size() == 1 and dir.length() <= 1.0:
 		completed = true
+		print(fsm.site)
 		if fsm.site != null:
 			finished.emit("sit", true)
 		else:

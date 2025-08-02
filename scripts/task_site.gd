@@ -2,7 +2,8 @@
 
 class_name TaskSite extends Node2D
 
-@export var target_offset: Vector2i = Vector2(0, 0)
+@export var seats: Array[Area2D]
+@export var target_offsets: Array[Vector2i]
 @export var facing_up: bool = false
 @export var facing_left: bool = false
 
@@ -15,8 +16,7 @@ class_name TaskSite extends Node2D
 var map_position: Vector2i = Vector2(0, 0)
 
 @onready var manager: Manager = get_parent()
-@onready var seat: Node2D = $seat
-var worker: StateMachine = null
+var workers: Dictionary[int, StateMachine] = {}
 
 var completion: float = 0.0
 @export_range(-1.0, 1.0, 0.01, "suffix:%/s") var exhaustion_rate: float = 0.01
@@ -24,14 +24,18 @@ var completion: float = 0.0
 func _ready() -> void:
 	global_position = get_node("../background").map_to_local(map_position)
 
-	$Area2D.input_event.connect(self.input_event)
-	$Area2D.mouse_entered.connect(self.mouse_entered)
-	$Area2D.mouse_exited.connect(self.mouse_exited)
+	for i in range(seats.size()):
+		seats[i].input_event.connect(self.input_event.bind(i))
+		seats[i].mouse_entered.connect(self.mouse_entered)
+		seats[i].mouse_exited.connect(self.mouse_exited)
 
-	seat.visible = false
+func get_empty_seat():
+	for i in range(seats.size()):
+		if !workers.has(i):
+			return i
 
-func input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	manager.site_input_event(self, event)
+func input_event(_viewport: Node, event: InputEvent, _shape_idx: int, seat_idx: int):
+	manager.site_input_event(self, event, seat_idx)
 
 func mouse_entered():
 	manager.object_mouse_entered(self)

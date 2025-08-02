@@ -32,6 +32,7 @@ var path: Array
 var map_position: Vector2i
 
 var site: TaskSite
+var seat_idx: int
 var seated: bool = false
 
 @onready var emotion: String = "default"
