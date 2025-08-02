@@ -7,17 +7,29 @@ class_name Work extends State
 func enter():
 	fsm.facing_up = fsm.site.facing_up
 	fsm.facing_left = fsm.site.facing_left
-	fsm.play_animation(fsm.site.animation)
+	completed = true
 
 func update(delta: float):
+	fsm.play_animation(fsm.site.animation)
+
 	sound_timer += delta
 
 	if fsm.site.sound != null and sound_timer >= fsm.site.sound_cooldown:
 		if randf() <= fsm.site.sound_probability:
 			GameAudio.play_audio_once(fsm.site.sound)
 		sound_timer = 0.0
+	
+	fsm.exhaustion += fsm.site.exhaustion_rate * delta
+	if fsm.exhaustion > 0.9 and !fsm.selected:
+		completed = false
+		finished.emit("sleep", false)
+	elif fsm.exhaustion > 0.5:
+		fsm.emotion = "tired"
+	else:
+		fsm.emotion = "default"
 
 func exit():
-	fsm.site.worker = null
-	fsm.site = null
-	fsm.seated = false
+	if completed:
+		fsm.site.worker = null
+		fsm.site = null
+		fsm.seated = false

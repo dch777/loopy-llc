@@ -24,6 +24,10 @@ GameAudio="*res://globals/GameAudio.tscn"
 
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 multi={

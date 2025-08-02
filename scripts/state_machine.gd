@@ -13,6 +13,7 @@ class_name StateMachine extends Node2D
 @export var select_material: ShaderMaterial = preload("res://assets/shaders/select.tres")
 
 @onready var manager: Manager = get_parent()
+@onready var sleep_particles: CPUParticles2D = $CPUParticles2D
 
 @onready var animation_player = $AnimatedSprite2D
 var line: Line2D
@@ -23,8 +24,7 @@ var line: Line2D
 var states: Dictionary[String, State] = {}
 var state_stack: Array[State] = []
 
-var max_energy: int
-var modifiers: Array[int]
+@onready var exhaustion: float = 0.0
 var control_locked: bool = false
 
 var selected: bool
@@ -64,6 +64,8 @@ func _ready():
 func _process(delta: float):
 	if state_stack.size() > 0:
 		state_stack[0].update(delta)
+
+	exhaustion = max(exhaustion, 0.0)
 
 	material.set_shader_parameter("selected", float(selected))
 	if selected and path.size() > 0:

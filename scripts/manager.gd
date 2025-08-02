@@ -11,7 +11,7 @@ class_name Manager extends Node2D
 
 @onready var hover_shader: ShaderMaterial = preload("res://assets/shaders/hover.tres")
 
-var hovered_objects: Dictionary[Node2D, Object]
+var hovered_objects: Dictionary[Node, Object]
 var selected_workers: Dictionary[StateMachine, Object]
 var workers: Array[StateMachine]
 
@@ -128,8 +128,8 @@ func site_input_event(site: TaskSite, event: InputEvent):
 			navigate(worker, site.map_position + site.target_offset)
 			worker.site = site
 
-func object_mouse_entered(object: Node2D):
+func object_mouse_entered(object: Node):
 	hovered_objects[object] = null
 
-func object_mouse_exited(object: Node2D):
+func object_mouse_exited(object: Node):
 	hovered_objects.erase(object)
