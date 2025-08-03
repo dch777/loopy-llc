@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=23 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
 [ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
@@ -10,7 +10,7 @@
 [sub_resource type="Resource" id="Resource_wfyhw"]
 script = ExtResource("2_3thbc")
 contract_name = "Headhunting"
-task_ids = Array[int]([2])
+task_ids = Array[int]([2, 2])
 cost = 0
 num_worker_rewarded = 3
 cash_rewarded = 0
@@ -22,7 +22,7 @@ contract_name = "Customer Support"
 task_ids = Array[int]([2, 0])
 cost = 0
 num_worker_rewarded = 0
-cash_rewarded = 100
+cash_rewarded = 50
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="Resource" id="Resource_xxioc"]
@@ -32,6 +32,69 @@ task_ids = Array[int]([1, 0, 0])
 cost = 0
 num_worker_rewarded = 0
 cash_rewarded = 300
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_275on"]
+script = ExtResource("2_3thbc")
+contract_name = "daily standup"
+task_ids = Array[int]([1])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 50
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_lnlcx"]
+script = ExtResource("2_3thbc")
+contract_name = "scam center"
+task_ids = Array[int]([2, 2, 2, 2, 2, 2, 2, 2])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 300
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_suv55"]
+script = ExtResource("2_3thbc")
+contract_name = "sprint planning"
+task_ids = Array[int]([1, 0])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 100
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_rwhqg"]
+script = ExtResource("2_3thbc")
+contract_name = "Pursuing leads"
+task_ids = Array[int]([2])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 20
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_1f3rw"]
+script = ExtResource("2_3thbc")
+contract_name = "Editing"
+task_ids = Array[int]([0])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 15
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_sp8vr"]
+script = ExtResource("2_3thbc")
+contract_name = "Seminar"
+task_ids = Array[int]([0, 1, 2])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 120
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_kth7m"]
+script = ExtResource("2_3thbc")
+contract_name = "Copywriting"
+task_ids = Array[int]([0, 0])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 45
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wfyhw"]
@@ -69,7 +132,7 @@ animations = [{
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2a5mp")
-contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw"), SubResource("Resource_d52bb"), SubResource("Resource_xxioc")])
+contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw"), SubResource("Resource_d52bb"), SubResource("Resource_xxioc"), SubResource("Resource_275on"), SubResource("Resource_lnlcx"), SubResource("Resource_suv55"), SubResource("Resource_rwhqg"), SubResource("Resource_1f3rw"), SubResource("Resource_sp8vr"), SubResource("Resource_kth7m")])
 
 [node name="LineCover" type="ColorRect" parent="."]
 layout_mode = 0
@@ -337,16 +400,6 @@ position = Vector2(1088, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="MoneyLabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 552.0
-offset_right = 160.0
-offset_bottom = 617.0
-theme_override_fonts/font = ExtResource("6_d52bb")
-theme_override_font_sizes/font_size = 64
-text = "$"
-
 [node name="LeftPreview" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -364,6 +417,17 @@ offset_top = 100.0
 offset_right = 873.0
 offset_bottom = 298.0
 scale = Vector2(2.4, 2.4)
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 552.0
+offset_right = 1096.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("6_d52bb")
+theme_override_font_sizes/font_size = 64
+text = "$"
+horizontal_alignment = 2
 
 [connection signal="gui_input" from="LineCover" to="." method="_on_line_cover_gui_input"]
 [connection signal="gui_input" from="FullCover" to="." method="_on_full_cover_gui_input"]
