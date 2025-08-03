@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Contract" load_steps=3 format=3 uid="uid://d234qhtdhgt5p"]
+
+[ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="1_wt7ni"]
+[ext_resource type="Script" uid="uid://vgkmuykbalnq" path="res://scripts/classes/task.gd" id="2_h65xp"]
+
+[resource]
+script = ExtResource("1_wt7ni")
+contract_name = ""
+tasks = Array[ExtResource("2_h65xp")]([])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 0
+metadata/_custom_type_script = "uid://uu3pnqd00pit"

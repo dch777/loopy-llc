@@ -38,7 +38,6 @@ func input_event(_viewport: Node, event: InputEvent, _shape_idx: int, seat_idx: 
 	manager.site_input_event(self, event, seat_idx)
 
 func mouse_entered():
-	print(workers)
 	manager.object_mouse_entered(self)
 
 func mouse_exited():

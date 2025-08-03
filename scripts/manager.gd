@@ -72,6 +72,9 @@ func _process(delta: float) -> void:
 		select_rect = Rect2(select_origin, get_local_mouse_position() - select_origin).abs()
 		queue_redraw()
 
+	if Input.is_action_just_pressed("pause"):
+		GameTime.toggle_pause()
+
 	if Input.is_action_just_pressed("deselect"):
 		clear_selected_workers()
 

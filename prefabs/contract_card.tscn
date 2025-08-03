@@ -1,0 +1,167 @@
+[gd_scene load_steps=7 format=3 uid="uid://be2er2t4q0x2p"]
+
+[ext_resource type="Script" uid="uid://bu1eivqopy3mu" path="res://scripts/contract_card.gd" id="1_8dyin"]
+[ext_resource type="Texture2D" uid="uid://xj28evdknbt" path="res://assets/sprites/task-1.tres" id="1_tvpua"]
+[ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="1_xdeqc"]
+[ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="2_lsonp"]
+[ext_resource type="Material" uid="uid://bhxjwf0uf66aa" path="res://assets/shaders/icon.tres" id="2_yc6dj"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n5a2c"]
+viewport_path = NodePath("SubViewport")
+
+[node name="ContractCard" type="Node2D"]
+script = ExtResource("1_8dyin")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(153, 198)
+render_target_clear_mode = 2
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+texture_filter = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="SubViewport/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="CostSeparator" type="HSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+text = "Cost: $120"
+
+[node name="RewardSeparator" type="HSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="RewardLabel" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+text = "REWARDS:"
+
+[node name="RewardContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="CashLabel" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/RewardContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+text = "$120"
+
+[node name="VSeparator" type="VSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/RewardContainer"]
+visible = false
+layout_mode = 2
+
+[node name="WorkerRect" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/RewardContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_lsonp")
+
+[node name="XAmount" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/RewardContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+text = "x3"
+
+[node name="TaskSeparator" type="HSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TaskLabel" type="Label" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_xdeqc")
+theme_override_font_sizes/font_size = 24
+text = "TASKS:"
+
+[node name="TaskContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+material = ExtResource("2_yc6dj")
+layout_mode = 2
+texture = ExtResource("1_tvpua")
+
+[node name="TextureRect2" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+material = ExtResource("2_yc6dj")
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_tvpua")
+
+[node name="VSeparator" type="VSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+material = ExtResource("2_yc6dj")
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_tvpua")
+
+[node name="VSeparator2" type="VSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
+material = ExtResource("2_yc6dj")
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_tvpua")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 602.0
+offset_bottom = 784.0
+scale = Vector2(3, 3)
+texture = SubResource("ViewportTexture_n5a2c")
