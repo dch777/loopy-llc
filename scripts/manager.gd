@@ -170,11 +170,19 @@ func object_mouse_entered(object: Node):
 func object_mouse_exited(object: Node):
 	hovered_objects.erase(object)
 
+func spawn_worker(spawn_position: Vector2, navigate_position: Vector2 = Vector2(0, 0)):
+	var new_worker = preload("res://prefabs/worker.tscn").instantiate()
+	new_worker.spawn_position = spawn_position
+	add_child(new_worker)
+	workers.append(new_worker)
+	navigate(new_worker, navigate_position)
+
 func next_day() -> void:
 	for t in $"../CanvasLayer/Timeline".schedule:
 		t.reset()
 		
 	GameTime.reset_bro()
+	GameAudio.play_audio_loop(preload("res://assets/audio/Beach House.ogg"))
 	one_time_bomb = false
 	
 	bar.queue_free()

@@ -14,7 +14,7 @@ script = ExtResource("2_kblhn")
 seats = [NodePath("Area2D")]
 target_offsets = Array[Vector2i]([Vector2i(2, 1)])
 facing_left = true
-time_to_complete = 30
+time_to_complete = 20
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(16, 4)

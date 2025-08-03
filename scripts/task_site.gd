@@ -36,7 +36,12 @@ var time_accum = 0.0
 signal finished_task(task_type: int)
 
 func _process(delta: float) -> void:
-	if workers.size() != 0 and workers.size() == seats.size() and workable: #TODO add logic that doesn't allow workers to finish tasks if they're too tired
+	var sleeping: bool = false
+	for worker in workers.values():
+		if worker.exhaustion > 0.9:
+			sleeping = true
+
+	if workers.size() != 0 and workers.size() == seats.size() and workable and !sleeping: #TODO add logic that doesn't allow workers to finish tasks if they're too tired
 		time_accum += delta
 		if time_accum >= 1.0:
 			working()

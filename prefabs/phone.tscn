@@ -11,9 +11,8 @@ size = Vector2(36, 36)
 script = ExtResource("1_ojfho")
 seats = [NodePath("Area2D")]
 target_offsets = Array[Vector2i]([Vector2i(2, 1)])
-facing_up = true
 facing_left = true
-time_to_complete = 30
+time_to_complete = 45
 task_type = 2
 
 [node name="Area2D" type="Area2D" parent="."]

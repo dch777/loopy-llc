@@ -1,17 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=16 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
 [ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
 [ext_resource type="Texture2D" uid="uid://tvenl6p3mdml" path="res://assets/sprites/hour_marker.png" id="2_em7vr"]
 [ext_resource type="PackedScene" uid="uid://be2er2t4q0x2p" path="res://prefabs/contract_card.tscn" id="3_umuy1"]
 [ext_resource type="Script" uid="uid://hqkkqxy8tjqe" path="res://scripts/hour.gd" id="5_wfyhw"]
+[ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="6_d52bb"]
 
 [sub_resource type="Resource" id="Resource_wfyhw"]
 script = ExtResource("2_3thbc")
 contract_name = "Headhunting"
 task_ids = Array[int]([2])
 cost = 0
-num_worker_rewarded = 1
+num_worker_rewarded = 3
 cash_rewarded = 0
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
@@ -30,7 +31,7 @@ contract_name = "Product Dev"
 task_ids = Array[int]([1, 0, 0])
 cost = 0
 num_worker_rewarded = 0
-cash_rewarded = 30
+cash_rewarded = 300
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wfyhw"]
@@ -335,6 +336,16 @@ width = 3.0
 position = Vector2(1088, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
+
+[node name="MoneyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 552.0
+offset_right = 160.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("6_d52bb")
+theme_override_font_sizes/font_size = 64
+text = "$"
 
 [node name="LeftPreview" type="TextureRect" parent="."]
 visible = false

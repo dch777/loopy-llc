@@ -179,6 +179,8 @@ shader_parameter/angry_size = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.6, 1.6)
+limit_left = -500
+limit_right = 1100
 script = ExtResource("1_5bl5m")
 zoom_max = 10.0
 zoom_min = 1.6

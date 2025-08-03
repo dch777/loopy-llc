@@ -66,6 +66,8 @@ func _process(delta: float) -> void:
 	elif current_hour == 7 and current_time <= 60:
 		current_hour += 1
 
+	$MoneyLabel.text = "$%s" % GameTime.total_money
+
 func _on_finished_task(task_type: int):
 	if task_type == -2:
 		open_contract_selection()
@@ -153,6 +155,8 @@ func select_contract(contract_card: ContractCard):
 
 func complete_contract(contract: Contract):
 	GameTime.total_money += contract.cash_rewarded
+	for i in range(contract.num_worker_rewarded):
+		manager.spawn_worker(Vector2(-32, 10), Vector2(0, 2))
 
 func confirm_contract():
 	clear_preview(selected_contract, selected_hour)
@@ -165,6 +169,7 @@ func confirm_contract():
 		task.contract = new_card.contract
 		add_task(task)
 		new_card.contract.tasks.append(task)
+	new_card.contract.contract_completed.connect(complete_contract)
 
 	new_card.position = Vector2(0, 0)
 	new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
