@@ -31,3 +31,6 @@ func toggle_pause():
 
 func _on_timer_timeout() -> void:
 	var end_day_scene = load("res://ui/end_day.tscn")
+
+func reset_bro():
+	$Timer.start()

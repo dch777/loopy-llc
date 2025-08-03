@@ -17,21 +17,6 @@ point_count = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r5cr"]
 
-[sub_resource type="Animation" id="Animation_3eegd"]
-resource_name = "spawn_button"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-
 [sub_resource type="Animation" id="Animation_d31m8"]
 length = 0.001
 tracks/0/type = "value"
@@ -47,6 +32,21 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_3eegd"]
+resource_name = "spawn_button"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d31m8"]
 _data = {
 &"RESET": SubResource("Animation_d31m8"),
@@ -57,6 +57,12 @@ _data = {
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_3eegd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.133333, 0.137255, 0.137255, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -129,8 +135,8 @@ position = Vector2(0, 576)
 curve = SubResource("Curve2D_3eegd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1024, 0)
-progress = 1152.0
+position = Vector2(-128, 0)
+progress = 0.00012207
 rotates = false
 
 [node name="Button" type="Button" parent="Path2D/PathFollow2D"]
@@ -157,3 +163,4 @@ libraries = {
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="button_up" from="Path2D/PathFollow2D/Button" to="." method="_on_button_button_up"]

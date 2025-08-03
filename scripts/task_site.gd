@@ -46,6 +46,9 @@ func _process(delta: float) -> void:
 		if time_accum >= 1.0:
 			not_working()
 			time_accum = 0.0
+	
+	if GameTime.get_time_left() == 0:
+		workable = false
 
 func _ready() -> void:
 	if workable:

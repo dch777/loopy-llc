@@ -23,3 +23,7 @@ func complete() -> void:
 	task_icon.material = load("res://assets/shaders/task_complete.tres")
 	is_complete = true
 	contract.check_completion()
+
+func reset() -> void:
+	task_icon.material = load("res://assets/shaders/task_incomplete.tres")
+	is_complete = false

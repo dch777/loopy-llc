@@ -21,6 +21,10 @@ var workers: Array[StateMachine]
 var select_origin: Vector2
 var select_rect: Rect2
 
+@onready var one_time_bomb = false
+@onready var end_day_screen = preload("res://ui/end_day.tscn")
+@onready var bar
+
 func _ready() -> void:
 	GameAudio.play_audio_loop(preload("res://assets/audio/Beach House.ogg"))
 	astar.set_diagonal_mode(diagonal_mode)
@@ -88,6 +92,11 @@ func _process(delta: float) -> void:
 	else:
 		select_timer = 0.0
 		select_rect = Rect2()
+		
+	if GameTime.get_time_left() == 0 and not one_time_bomb:
+		one_time_bomb = true
+		bar = end_day_screen.instantiate()
+		$"../CanvasLayer".add_child(bar)
 
 func _draw():
 	if select_timer > 0.0 and (select_timer > 0.5 or select_rect.size.length() > 32):
@@ -160,3 +169,12 @@ func object_mouse_entered(object: Node):
 
 func object_mouse_exited(object: Node):
 	hovered_objects.erase(object)
+
+func next_day() -> void:
+	for t in $"../CanvasLayer/Timeline".schedule:
+		t.reset()
+		
+	GameTime.reset_bro()
+	one_time_bomb = false
+	
+	bar.queue_free()

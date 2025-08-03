@@ -37,3 +37,6 @@ func _on_timer_timeout() -> void:
 		$Path2D/PathFollow2D/Button.disabled = false
 		$Path2D/PathFollow2D/Button.show()
 		$AnimationPlayer.play("spawn_button")
+
+func _on_button_button_up() -> void:
+	print(get_parent().get_parent().get_node("manager").next_day())
