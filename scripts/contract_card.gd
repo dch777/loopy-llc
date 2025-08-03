@@ -1,6 +1,6 @@
 # contract_card.gd
 
-class_name ContractCard extends Node
+class_name ContractCard extends TextureRect
 
 signal select_contract(contract_card: ContractCard)
 
@@ -37,11 +37,18 @@ func populate():
 		cost_label.text = "Cost: $%s" % contract.cost
 		cost_label.visible = true
 		cost_separator.visible = true
+	else:
+		cost_label.visible = false
+		cost_separator.visible = false
 
 	if contract.task_ids.size() > 0:
 		task_label.visible = true
 		task_separator.visible = true
 		task_container.visible = true
+	else:
+		task_label.visible = false
+		task_separator.visible = false
+		task_container.visible = false
 
 	for i in range(contract.task_ids.size()):
 		var task_icon = TextureRect.new()
@@ -54,20 +61,29 @@ func populate():
 		task_container.add_child(task_icon)
 		if i < contract.task_ids.size() - 1:
 			task_container.add_child(VSeparator.new())
-	
+
 	if contract.num_worker_rewarded > 0 or contract.cash_rewarded > 0:
 		reward_label.visible = true
 		reward_separator.visible = true
 		reward_container.visible = true
+	else:
+		reward_label.visible = false
+		reward_separator.visible = false
+		reward_container.visible = false
 
 	if contract.num_worker_rewarded > 0:
 		reward_xamount.text = "x%s" % contract.num_worker_rewarded
 		reward_worker.visible = true
 		reward_xamount.visible = true
+	else:
+		reward_worker.visible = false
+		reward_xamount.visible = false
 
 	if contract.cash_rewarded > 0:
 		reward_cash.text = "$%s" % contract.cash_rewarded
 		reward_cash.visible = true
+	else:
+		reward_cash.visible = false
 
 	reward_vseparator.visible = contract.num_worker_rewarded > 0 and contract.cash_rewarded > 0
 

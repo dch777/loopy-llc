@@ -76,6 +76,7 @@ libraries = {
 
 [node name="AlarmLight" type="Node2D" parent="."]
 visible = false
+z_index = 99
 position = Vector2(0, -1)
 
 [node name="Polygon2D" type="Polygon2D" parent="AlarmLight"]

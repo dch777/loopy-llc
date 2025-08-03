@@ -35,9 +35,7 @@ func _ready() -> void:
 	for contract_card in $NewContractCards.find_children("*", "ContractCard"):
 		contract_card.select_contract.connect(select_contract)
 
-	add_task(OfficeTask.new(1, 0))
 	GameTime.start_game_time()
-	open_contract_selection()
 
 func _process(delta: float) -> void:
 	# Move hour marker across
@@ -69,6 +67,9 @@ func _process(delta: float) -> void:
 		current_hour += 1
 
 func _on_finished_task(task_type: int):
+	if task_type == -2:
+		open_contract_selection()
+
 	for task in schedule:
 		if task.hour == current_hour and task.task_type == task_type and not task.is_complete:
 			complete_task(task)
@@ -150,14 +151,21 @@ func select_contract(contract_card: ContractCard):
 
 	selected_card.scale = Vector2(1.92, 1.92)
 
+func complete_contract(contract: Contract):
+	GameTime.total_money += contract.cash_rewarded
+
 func confirm_contract():
 	clear_preview(selected_contract, selected_hour)
-	for i in range(selected_contract.task_ids.size()):
-		var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
-		add_task(task)
-		selected_contract.tasks.append(task)
 
-	var new_card: ContractCard = selected_card.duplicate()
+	var new_card: ContractCard = preload("res://prefabs/contract_card.tscn").instantiate()
+	new_card.contract = selected_card.contract.duplicate()
+
+	for i in range(new_card.contract.task_ids.size()):
+		var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
+		task.contract = new_card.contract
+		add_task(task)
+		new_card.contract.tasks.append(task)
+
 	new_card.position = Vector2(0, 0)
 	new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
 	new_card.select_contract.connect(stub_selected.bind(selected_hour + selected_contract.task_ids.size() - 1))
@@ -175,16 +183,23 @@ func stub_selected(stub: ContractCard, hour: int):
 	if !preview_enabled:
 		return
 
+	$LeftPreview.visible = false
+	$RightPreview.visible = false
+	$LeftPreview.texture = null
+	$RightPreview.texture = null
+
+	if selected_stub != null:
+		for task in selected_stub.contract.tasks:
+			if task.is_complete:
+				task.task_icon.material = preload("res://assets/shaders/task_complete.tres")
+			else:
+				task.task_icon.material = preload("res://assets/shaders/task_incomplete.tres")
+
 	var target: TextureRect = $LeftPreview
 	if hour < 5:
 		target = $RightPreview
 
 	if selected_stub == stub:
-		for task in stub.contract.tasks:
-			if task.is_complete:
-				task.task_icon.material = preload("res://assets/shaders/task_complete.tres")
-			else:
-				task.task_icon.material = preload("res://assets/shaders/task_incomplete.tres")
 		target.texture = null
 		target.visible = false
 		selected_stub = null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=15 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
 [ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
@@ -8,11 +8,29 @@
 
 [sub_resource type="Resource" id="Resource_wfyhw"]
 script = ExtResource("2_3thbc")
-contract_name = "Human Resources"
+contract_name = "Headhunting"
+task_ids = Array[int]([2])
+cost = 0
+num_worker_rewarded = 1
+cash_rewarded = 0
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_d52bb"]
+script = ExtResource("2_3thbc")
+contract_name = "Customer Support"
+task_ids = Array[int]([2, 0])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 100
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="Resource" id="Resource_xxioc"]
+script = ExtResource("2_3thbc")
+contract_name = "Product Dev"
 task_ids = Array[int]([1, 0, 0])
 cost = 0
 num_worker_rewarded = 0
-cash_rewarded = 0
+cash_rewarded = 30
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wfyhw"]
@@ -50,7 +68,7 @@ animations = [{
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2a5mp")
-contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw")])
+contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw"), SubResource("Resource_d52bb"), SubResource("Resource_xxioc")])
 
 [node name="LineCover" type="ColorRect" parent="."]
 layout_mode = 0

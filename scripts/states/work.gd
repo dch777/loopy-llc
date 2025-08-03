@@ -18,7 +18,9 @@ func update(delta: float):
 			GameAudio.play_audio_once(fsm.site.sound)
 		sound_timer = 0.0
 	
-	fsm.exhaustion += fsm.site.exhaustion_rate * delta
+	if fsm.site.workable:
+		fsm.exhaustion += fsm.site.exhaustion_rate * delta
+
 	if fsm.exhaustion > 0.9 and !fsm.selected:
 		completed = true
 		finished.emit("sleep", false)

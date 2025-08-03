@@ -31,6 +31,9 @@ func play_audio_loop(stream: AudioStream, pitch: float = 1.0, volume: float = 1.
 	return stream_player
 
 func stop_audio(stream_player: AudioStreamPlayer2D) -> void:
+	if stream_player == null:
+		return
+
 	current_streams.erase(stream_player.stream)
 	stream_player.queue_free()
 
