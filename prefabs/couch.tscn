@@ -13,7 +13,7 @@ seats = [NodePath("Area2D"), NodePath("Area2D2")]
 target_offsets = Array[Vector2i]([Vector2i(0, 1), Vector2i(1, 1)])
 workable = false
 animation = "sit"
-exhaustion_rate = -0.2
+exhaustion_rate = -0.05
 
 [node name="Area2D" type="Area2D" parent="."]
 

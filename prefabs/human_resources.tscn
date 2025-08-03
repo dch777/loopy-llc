@@ -12,7 +12,7 @@ size = Vector2(20, 36)
 script = ExtResource("1_r3mbu")
 seats = [NodePath("Area2D")]
 target_offsets = Array[Vector2i]([Vector2i(0, 1)])
-time_to_complete = 5
+time_to_complete = 20
 task_type = -2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

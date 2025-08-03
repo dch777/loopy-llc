@@ -25,6 +25,8 @@ func _process(delta: float) -> void:
 		try_trigger_alarm()
 	elif hour == 7 and current_time <= 60:
 		try_trigger_alarm()
+	
+	GameTime.alarm = get_parent().workable
 
 func try_trigger_alarm() -> void:	
 	if has_triggered:

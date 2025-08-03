@@ -12,6 +12,7 @@ class_name Manager extends Node2D
 @onready var office: TileMapLayer = $office
 
 @onready var hover_shader: ShaderMaterial = preload("res://assets/shaders/hover.tres")
+@export var hover_shader_enabled: bool = false
 
 var hovered_objects: Dictionary[Node, Object]
 var selected_workers: Dictionary[StateMachine, Object]
@@ -56,7 +57,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
-	hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
+	if hover_shader_enabled:
+		hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
 
 	if selected_workers.size() == 1:
 		status_bar.visible = true

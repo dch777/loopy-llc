@@ -2021,9 +2021,9 @@ animation = &"tired_up_right_sit"
 script = ExtResource("3_moqo0")
 metadata/_custom_type_script = "uid://bug6s7nrs8poq"
 
-[node name="tired_walk" type="Node2D" parent="states"]
+[node name="tp" type="Node2D" parent="states"]
 script = ExtResource("3_moqo0")
-speed = 0.2
+speed = 10.0
 metadata/_custom_type_script = "uid://bug6s7nrs8poq"
 
 [node name="work" type="Node2D" parent="states"]
