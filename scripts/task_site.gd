@@ -6,6 +6,14 @@ class_name TaskSite extends Node2D
 @export var target_offsets: Array[Vector2i]
 @export var facing_up: bool = false
 @export var facing_left: bool = false
+@export var time_to_complete = 100
+'''
+	-1 - firealarm
+	0 - desk
+	1 - meeting
+'''
+@export var task_type: int
+@export var workable: bool = true
 
 @export var animation: String = "idle"
 @export var sound: AudioStream = preload("res://assets/audio/mechanical-keyboard-typing-sound-effect-hd-379363.mp3")
@@ -21,7 +29,26 @@ var workers: Dictionary[int, StateMachine] = {}
 var completion: float = 0.0
 @export_range(-1.0, 1.0, 0.01, "suffix:%/s") var exhaustion_rate: float = 0.01
 
+var time_accum = 0.0
+
+signal finished_task(task_type: int)
+
+func _process(delta: float) -> void:
+	if workers.size() == seats.size() and workable: #TODO add logic that doesn't allow workers to finish tasks if they're too tired
+		time_accum += delta
+		if time_accum >= 1.0:
+			working()
+			time_accum = 0.0
+	elif workable:
+		time_accum += delta
+		if time_accum >= 1.0:
+			not_working()
+			time_accum = 0.0
+
 func _ready() -> void:
+	if workable:
+		$TextureProgressBar.max_value = time_to_complete
+		
 	global_position = get_node("../background").map_to_local(map_position)
 
 	for i in range(seats.size()):
@@ -42,3 +69,18 @@ func mouse_entered():
 
 func mouse_exited():
 	manager.object_mouse_exited(self)
+	
+func working():
+	if $TextureProgressBar.value == $TextureProgressBar.max_value:	# finished task!
+		emit_signal("finished_task", task_type)
+		$TextureProgressBar.value = 0
+		return
+		
+	$TextureProgressBar.show()
+	$TextureProgressBar.value += 1
+
+func not_working():
+	if $TextureProgressBar.value == 0:
+		$TextureProgressBar.hide()
+		return
+	$TextureProgressBar.value -= 1

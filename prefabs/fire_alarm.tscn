@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://clclm27bo4vjm"]
+[gd_scene load_steps=10 format=3 uid="uid://clclm27bo4vjm"]
 
 [ext_resource type="Script" uid="uid://ygipel88d4i5" path="res://scripts/task_site.gd" id="1_6elti"]
+[ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="1_85dsm"]
 [ext_resource type="Script" uid="uid://bnuxm2ghjpf18" path="res://scripts/alarm_manager.gd" id="2_6elti"]
+[ext_resource type="Texture2D" uid="uid://ccolyh5c27jsl" path="res://assets/sprites/empty_progress.tres" id="4_ckkds"]
+[ext_resource type="Texture2D" uid="uid://b3sn1gqn13ymd" path="res://assets/sprites/fill_progress.tres" id="5_g0mvf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnit4"]
 
@@ -43,22 +46,24 @@ _data = {
 &"alarm": SubResource("Animation_6elti")
 }
 
-[node name="FireAlarm" type="Node2D" node_paths=PackedStringArray("seats")]
+[node name="FireAlarm" type="Node2D"]
 script = ExtResource("1_6elti")
-seats = [NodePath("Area2D")]
-target_offsets = Array[Vector2i]([Vector2i(1, 0)])
 facing_up = true
 facing_left = true
+time_to_complete = 3
+task_type = -1
 
 [node name="AlarmManager" type="Node2D" parent="."]
 script = ExtResource("2_6elti")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(6, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-6, 0)
 shape = SubResource("RectangleShape2D_cnit4")
+
+[node name="seat" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+texture = ExtResource("1_85dsm")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 30.0
@@ -80,3 +85,11 @@ polygon = PackedVector2Array(0, 0, -24, -128, 24, -128)
 [node name="Polygon2D2" type="Polygon2D" parent="AlarmLight"]
 color = Color(0.788235, 0.141176, 0.392157, 0.501961)
 polygon = PackedVector2Array(0, 0, -24, 128, 24, 128)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 12.0
+offset_bottom = -8.0
+texture_under = ExtResource("4_ckkds")
+texture_progress = ExtResource("5_g0mvf")
