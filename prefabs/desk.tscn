@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cx2bnk3j8oe53"]
+[gd_scene load_steps=6 format=3 uid="uid://cx2bnk3j8oe53"]
 
 [ext_resource type="Texture2D" uid="uid://ccolyh5c27jsl" path="res://assets/sprites/empty_progress.tres" id="2_h7puy"]
 [ext_resource type="Script" uid="uid://ygipel88d4i5" path="res://scripts/task_site.gd" id="2_kblhn"]
+[ext_resource type="AudioStream" uid="uid://bgdgm2d5ymuvt" path="res://assets/audio/mechanical-keyboard-typing-sound-effect-hd-379363.mp3" id="2_uv3vh"]
 [ext_resource type="Texture2D" uid="uid://b3sn1gqn13ymd" path="res://assets/sprites/fill_progress.tres" id="3_uv3vh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kblhn"]
@@ -15,6 +16,7 @@ seats = [NodePath("Area2D")]
 target_offsets = Array[Vector2i]([Vector2i(2, 1)])
 facing_left = true
 time_to_complete = 20
+sound = ExtResource("2_uv3vh")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(16, 4)

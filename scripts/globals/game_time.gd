@@ -3,7 +3,7 @@ extends Node2D
 var pause_lock: bool = false
 var _temp_scale: float = 1.0
 
-var total_money: int = 0
+var total_money: int = 200
 
 func start_game_time() -> void:
 	$Timer.start()

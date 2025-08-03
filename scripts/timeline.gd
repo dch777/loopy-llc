@@ -47,6 +47,10 @@ func _process(delta: float) -> void:
 		$NewContractCards/Confirm.color = Color("#5bb361")
 		if $NewContractCards/Confirm.get_rect().has_point(get_local_mouse_position()) and Input.is_action_just_pressed("select"):
 			confirm_contract()
+	elif $NewContractCards.visible and selected_contract != null and selected_contract.cost != 0 and GameTime.total_money > selected_contract.cost:
+		$NewContractCards/Confirm.color = Color("#5bb361")
+		if $NewContractCards/Confirm.get_rect().has_point(get_local_mouse_position()) and Input.is_action_just_pressed("select"):
+			confirm_contract()
 	else:
 		$NewContractCards/Confirm.color = Color("#9b9c82")
 	
@@ -161,21 +165,28 @@ func complete_contract(contract: Contract):
 func confirm_contract():
 	clear_preview(selected_contract, selected_hour)
 
-	var new_card: ContractCard = preload("res://prefabs/contract_card.tscn").instantiate()
-	new_card.contract = selected_card.contract.duplicate()
+	if selected_contract.cost > 0:
+		GameTime.total_money -= selected_contract.cost
 
-	for i in range(new_card.contract.task_ids.size()):
-		var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
-		task.contract = new_card.contract
-		add_task(task)
-		new_card.contract.tasks.append(task)
-	new_card.contract.contract_completed.connect(complete_contract)
+	print(selected_contract.tasks.size())
+	if selected_contract.task_ids.size() == 0:
+		complete_contract(selected_contract)
+	else:
+		var new_card: ContractCard = preload("res://prefabs/contract_card.tscn").instantiate()
+		new_card.contract = selected_card.contract.duplicate()
 
-	new_card.position = Vector2(0, 0)
-	new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
-	new_card.select_contract.connect(stub_selected.bind(selected_hour + selected_contract.task_ids.size() - 1))
-	new_card.material = preload("res://assets/shaders/stub.tres")
-	get_node("FullCover/Hour%s" % (selected_hour + selected_contract.task_ids.size() - 1)).add_child(new_card)
+		for i in range(new_card.contract.task_ids.size()):
+			var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
+			task.contract = new_card.contract
+			add_task(task)
+			new_card.contract.tasks.append(task)
+		new_card.contract.contract_completed.connect(complete_contract)
+
+		new_card.position = Vector2(0, 0)
+		new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
+		new_card.select_contract.connect(stub_selected.bind(selected_hour + selected_contract.task_ids.size() - 1))
+		new_card.material = preload("res://assets/shaders/stub.tres")
+		get_node("FullCover/Hour%s" % (selected_hour + selected_contract.task_ids.size() - 1)).add_child(new_card)
 
 	selected_hour = -1
 	selected_contract = null

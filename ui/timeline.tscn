@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=24 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
 [ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
@@ -46,10 +46,10 @@ metadata/_custom_type_script = "uid://uu3pnqd00pit"
 [sub_resource type="Resource" id="Resource_lnlcx"]
 script = ExtResource("2_3thbc")
 contract_name = "scam center"
-task_ids = Array[int]([2, 2, 2, 2, 2, 2, 2, 2])
+task_ids = Array[int]([2, 2, 2, 2])
 cost = 0
 num_worker_rewarded = 0
-cash_rewarded = 300
+cash_rewarded = 150
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="Resource" id="Resource_suv55"]
@@ -97,6 +97,15 @@ num_worker_rewarded = 0
 cash_rewarded = 45
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
+[sub_resource type="Resource" id="Resource_u231x"]
+script = ExtResource("2_3thbc")
+contract_name = "Internship"
+task_ids = Array[int]([])
+cost = 60
+num_worker_rewarded = 1
+cash_rewarded = 0
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_wfyhw"]
 viewport_path = NodePath("SubViewport")
 
@@ -132,7 +141,7 @@ animations = [{
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2a5mp")
-contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw"), SubResource("Resource_d52bb"), SubResource("Resource_xxioc"), SubResource("Resource_275on"), SubResource("Resource_lnlcx"), SubResource("Resource_suv55"), SubResource("Resource_rwhqg"), SubResource("Resource_1f3rw"), SubResource("Resource_sp8vr"), SubResource("Resource_kth7m")])
+contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw"), SubResource("Resource_d52bb"), SubResource("Resource_xxioc"), SubResource("Resource_275on"), SubResource("Resource_lnlcx"), SubResource("Resource_suv55"), SubResource("Resource_rwhqg"), SubResource("Resource_1f3rw"), SubResource("Resource_sp8vr"), SubResource("Resource_kth7m"), SubResource("Resource_u231x")])
 
 [node name="LineCover" type="ColorRect" parent="."]
 layout_mode = 0

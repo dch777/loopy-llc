@@ -26,7 +26,6 @@ var select_rect: Rect2
 @onready var bar
 
 func _ready() -> void:
-	GameAudio.play_audio_loop(preload("res://assets/audio/Beach House.ogg"))
 	astar.set_diagonal_mode(diagonal_mode)
 	astar.set_region(background.get_used_rect())
 	astar.update()
@@ -51,7 +50,7 @@ func _ready() -> void:
 			if background.get_cell_source_id(cell) == -1:
 				astar.set_point_solid(cell)
 
-	for worker in find_children("*", "StateMachine"):
+	for worker in find_children("*", "StateMachine", false):
 		workers.push_back(worker)
 	
 func _process(delta: float) -> void:
@@ -101,7 +100,7 @@ func _process(delta: float) -> void:
 func _draw():
 	if select_timer > 0.0 and (select_timer > 0.5 or select_rect.size.length() > 32):
 		draw_rect(select_rect, Color(0.7, 0.7, 0.7, 0.5))
-		for worker in find_children("*", "StateMachine"):
+		for worker in workers:
 			if select_rect.has_point(worker.position):
 				select_worker(worker)
 			elif !Input.is_action_pressed("multi"):
