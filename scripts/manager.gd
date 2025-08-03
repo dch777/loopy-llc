@@ -49,7 +49,7 @@ func _ready() -> void:
 
 	for worker in find_children("*", "StateMachine"):
 		workers.push_back(worker)
-
+	
 func _process(delta: float) -> void:
 	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
