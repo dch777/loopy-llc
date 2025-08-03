@@ -8,9 +8,11 @@ class_name TaskSite extends Node2D
 @export var facing_left: bool = false
 @export var time_to_complete = 100
 '''
+	-2 - hr
 	-1 - firealarm
 	0 - desk
 	1 - meeting
+	2 - phone call
 '''
 @export var task_type: int
 @export var workable: bool = true
@@ -34,7 +36,7 @@ var time_accum = 0.0
 signal finished_task(task_type: int)
 
 func _process(delta: float) -> void:
-	if workers.size() == seats.size() and workable: #TODO add logic that doesn't allow workers to finish tasks if they're too tired
+	if workers.size() != 0 and workers.size() == seats.size() and workable: #TODO add logic that doesn't allow workers to finish tasks if they're too tired
 		time_accum += delta
 		if time_accum >= 1.0:
 			working()
