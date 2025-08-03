@@ -53,19 +53,19 @@ func _process(delta: float) -> void:
 		$NewContractCards/Confirm.color = Color("#9b9c82")
 	
 	var current_time = GameTime.get_time_left()
-	if current_hour == 1 and current_time <= 210.0:
+	if current_hour == 1 and current_time <= 420.0:
 		current_hour += 1
-	elif current_hour == 2 and current_time <= 180:
+	elif current_hour == 2 and current_time <= 360:
 		current_hour += 1
-	elif current_hour == 3 and current_time <= 150:
+	elif current_hour == 3 and current_time <= 300:
 		current_hour += 1
-	elif current_hour == 4 and current_time <= 120:
+	elif current_hour == 4 and current_time <= 240:
 		current_hour += 1
-	elif current_hour == 5 and current_time <= 90:
+	elif current_hour == 5 and current_time <= 180:
 		current_hour += 1
-	elif current_hour == 6 and current_time <= 60:
+	elif current_hour == 6 and current_time <= 120:
 		current_hour += 1
-	elif current_hour == 7 and current_time <= 30:
+	elif current_hour == 7 and current_time <= 60:
 		current_hour += 1
 
 func _on_finished_task(task_type: int):

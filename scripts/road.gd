@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var car_crash_cound = preload("res://assets/audio/car-crash-sound-effect-376874.mp3")
+@onready var car_crash_sound = preload("res://assets/audio/car-crash-sound-effect-376874.mp3")
 
 func drive() -> void:
 	var speed_multiplier = randf_range(1, 3)
@@ -17,7 +17,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_car_area_entered(area: Area2D) -> void:
-	GameAudio.play_audio_once(car_crash_cound)
+	GameAudio.play_audio_once(car_crash_sound, 1.0, -5.0)
 	area.get_parent().get_parent().hovered_objects.erase(area.get_parent())
 	area.get_parent().get_parent().selected_workers.erase(area.get_parent())
 	area.get_parent().get_parent().workers.erase(area.get_parent())
