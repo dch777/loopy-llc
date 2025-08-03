@@ -11,6 +11,15 @@ extends Node2D
 func _process(delta: float) -> void:
 	var current_time = GameTime.get_time_left()
 	
+	if GameTime.get_time_left() == 0:
+		has_triggered = false
+		percent_chance_trigger = 0.1
+		alarm = null
+		hour = 1
+		$"../AlarmLight".hide()
+		$"../AnimationPlayer".stop()
+		return
+	
 	if hour == 1 and current_time <= 420.0:
 		try_trigger_alarm()
 	elif hour == 2 and current_time <= 360:
@@ -26,7 +35,7 @@ func _process(delta: float) -> void:
 	elif hour == 7 and current_time <= 60:
 		try_trigger_alarm()
 
-func try_trigger_alarm() -> void:	
+func try_trigger_alarm() -> void:
 	if has_triggered:
 		return
 		
