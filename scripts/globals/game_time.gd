@@ -4,6 +4,8 @@ var pause_lock: bool = false
 var _temp_scale: float = 1.0
 
 var total_money: int = 200
+var total_tasks: int = 0
+var tasks_complete: int = 0
 
 func start_game_time() -> void:
 	$Timer.start()

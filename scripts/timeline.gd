@@ -71,6 +71,12 @@ func _process(delta: float) -> void:
 		current_hour += 1
 
 	$MoneyLabel.text = "$%s" % GameTime.total_money
+	
+	if GameTime.get_time_left() == 0:
+		current_hour == 1
+		for task in schedule:
+			if task.is_complete:
+				GameTime.tasks_complete += 1
 
 func _on_finished_task(task_type: int):
 	if task_type == -2:
@@ -85,6 +91,7 @@ func add_task(task: OfficeTask) -> void:
 	var box_path = "FullCover/Hour%s/GridContainer" % task.hour
 	get_node(box_path).add_child(task.task_icon)
 	schedule.append(task)
+	GameTime.total_tasks += 1
 
 func preview_contract(contract: Contract, hour: int):
 	if selected_contract == null or hour < 1:
