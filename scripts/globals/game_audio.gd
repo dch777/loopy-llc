@@ -2,6 +2,12 @@ extends Node2D
 
 var current_streams: Dictionary[AudioStream, Object] = {}
 
+func _process(delta: float) -> void:
+	if GameTime.get_time_left() == 0:
+		for c in get_children():
+			c.queue_free()
+		current_streams = {}
+
 func play_audio_once(stream: AudioStream, pitch: float = 1.0, volume: float = 1.0) -> AudioStreamPlayer2D:
 	if current_streams.has(stream):
 		return

@@ -29,6 +29,5 @@ func toggle_pause():
 	elif !pause_lock:
 		Engine.time_scale = 1.0
 
-
-func _on_timer_timeout() -> void:
-	var end_day_scene = load("res://ui/end_day.tscn")
+func reset_bro():
+	$Timer.start()

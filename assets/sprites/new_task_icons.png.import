@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0obmp2hqs8q0"
-path="res://.godot/imported/taskicons.png-d1471496cffae2566205eeceb56ac202.ctex"
+uid="uid://du3otfany43og"
+path="res://.godot/imported/new_task_icons.png-2cf27abc30c7edb16b849026efa0b8ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/taskicons.png"
-dest_files=["res://.godot/imported/taskicons.png-d1471496cffae2566205eeceb56ac202.ctex"]
+source_file="res://assets/sprites/new_task_icons.png"
+dest_files=["res://.godot/imported/new_task_icons.png-2cf27abc30c7edb16b849026efa0b8ff.ctex"]
 
 [params]
 

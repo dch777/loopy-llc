@@ -11,16 +11,6 @@ extends Control
 
 @onready var show_tasks = false
 @onready var schedule = []
-@onready var num_tasks_per_hour = {
-	1: 0,
-	2: 0,
-	3: 0,
-	4: 0,
-	5: 0,
-	6: 0,
-	7: 0,
-	8: 0
-}
 
 @onready var current_hour = 1
 
@@ -82,7 +72,6 @@ func add_task(task: OfficeTask) -> void:
 	var box_path = "FullCover/Hour%s/GridContainer" % task.hour
 	get_node(box_path).add_child(task.task_icon)
 	schedule.append(task)
-	num_tasks_per_hour[task.hour] += 1
 
 func preview_contract(contract: Contract, hour: int):
 	if selected_contract == null or hour < 1:
