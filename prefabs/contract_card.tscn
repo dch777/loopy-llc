@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://be2er2t4q0x2p"]
+[gd_scene load_steps=5 format=3 uid="uid://be2er2t4q0x2p"]
 
 [ext_resource type="Script" uid="uid://bu1eivqopy3mu" path="res://scripts/contract_card.gd" id="1_8dyin"]
-[ext_resource type="Texture2D" uid="uid://xj28evdknbt" path="res://assets/sprites/task-1.tres" id="1_tvpua"]
 [ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="1_xdeqc"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="2_lsonp"]
-[ext_resource type="Material" uid="uid://bhxjwf0uf66aa" path="res://assets/shaders/icon.tres" id="2_yc6dj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_n5a2c"]
 viewport_path = NodePath("SubViewport")
@@ -124,38 +122,8 @@ theme_override_font_sizes/font_size = 24
 text = "TASKS:"
 
 [node name="TaskContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-material = ExtResource("2_yc6dj")
-layout_mode = 2
-texture = ExtResource("1_tvpua")
-
-[node name="TextureRect2" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-material = ExtResource("2_yc6dj")
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_tvpua")
-
-[node name="VSeparator" type="VSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-layout_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-material = ExtResource("2_yc6dj")
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_tvpua")
-
-[node name="VSeparator2" type="VSeparator" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer"]
-material = ExtResource("2_yc6dj")
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_tvpua")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 1
@@ -165,3 +133,5 @@ offset_right = 602.0
 offset_bottom = 784.0
 scale = Vector2(3, 3)
 texture = SubResource("ViewportTexture_n5a2c")
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]

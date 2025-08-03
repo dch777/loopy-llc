@@ -10,6 +10,9 @@ extends Camera2D
 @onready var reached_position
 var previous_position: Vector2
 
+func _ready() -> void:
+	GameAudio.play_audio_loop(load("res://assets/audio/Beach House.ogg"))
+
 func _process(delta: float) -> void:
 	var zoom_factor: float = 0.0
 

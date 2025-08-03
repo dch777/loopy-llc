@@ -1,7 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=10 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
+[ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
 [ext_resource type="Texture2D" uid="uid://tvenl6p3mdml" path="res://assets/sprites/hour_marker.png" id="2_em7vr"]
+[ext_resource type="PackedScene" uid="uid://be2er2t4q0x2p" path="res://prefabs/contract_card.tscn" id="3_umuy1"]
+[ext_resource type="Script" uid="uid://hqkkqxy8tjqe" path="res://scripts/hour.gd" id="5_wfyhw"]
+
+[sub_resource type="Resource" id="Resource_wfyhw"]
+script = ExtResource("2_3thbc")
+contract_name = "Human Resources"
+task_ids = Array[int]([1, 0, 0])
+cost = 0
+num_worker_rewarded = 0
+cash_rewarded = 0
+metadata/_custom_type_script = "uid://uu3pnqd00pit"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umuy1"]
 atlas = ExtResource("2_em7vr")
@@ -29,6 +41,7 @@ animations = [{
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_2a5mp")
+contracts = Array[ExtResource("2_3thbc")]([SubResource("Resource_wfyhw")])
 
 [node name="LineCover" type="ColorRect" parent="."]
 layout_mode = 0
@@ -43,7 +56,186 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 0.501961)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Hour1" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 32.0
+offset_right = 75.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour1"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour1"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour2" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 203.0
+offset_top = 32.0
+offset_right = 203.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 2
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour2"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour2"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour3" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 32.0
+offset_right = 331.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 3
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour3"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour3"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour4" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 32.0
+offset_right = 459.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 4
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour4"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour4"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour5" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 32.0
+offset_right = 587.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 5
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour5"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour5"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour6" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 715.0
+offset_top = 32.0
+offset_right = 715.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 6
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour6"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour6"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour7" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 843.0
+offset_top = 32.0
+offset_right = 843.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 7
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour7"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour7"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="Hour8" type="VBoxContainer" parent="FullCover"]
+layout_mode = 0
+offset_left = 971.0
+offset_top = 32.0
+offset_right = 971.0
+offset_bottom = 32.0
+mouse_filter = 0
+script = ExtResource("5_wfyhw")
+id = 8
+
+[node name="ColorRect" type="ColorRect" parent="FullCover/Hour8"]
+custom_minimum_size = Vector2(104, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GridContainer" type="GridContainer" parent="FullCover/Hour8"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+columns = 3
+
+[node name="NewContractCards" type="Node2D" parent="."]
+visible = false
+
+[node name="ContractCard" parent="NewContractCards" instance=ExtResource("3_umuy1")]
+position = Vector2(56, 240)
+scale = Vector2(0.15, 0.15)
+
+[node name="ContractCard2" parent="NewContractCards" instance=ExtResource("3_umuy1")]
+position = Vector2(371, 240)
+scale = Vector2(0.15, 0.15)
+
+[node name="ContractCard3" parent="NewContractCards" instance=ExtResource("3_umuy1")]
+position = Vector2(686, 240)
+scale = Vector2(0.15, 0.15)
+
+[node name="Confirm" type="ColorRect" parent="NewContractCards"]
+offset_left = 1001.0
+offset_top = 240.0
+offset_right = 1096.0
+offset_bottom = 596.0
+color = Color(0.356863, 0.701961, 0.380392, 1)
 
 [node name="HourMarker" type="Node2D" parent="."]
 position = Vector2(64, 20)
@@ -58,386 +250,49 @@ position = Vector2(0, 16)
 points = PackedVector2Array(64, 32, 1088, 32)
 width = 5.0
 
-[node name="Sections" type="Node2D" parent="Line2D"]
-visible = false
+[node name="Markers" type="Node2D" parent="Line2D"]
 
-[node name="Hour1" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(128, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour1"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour2" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(256, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour2"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour3" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(384, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour3"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour4" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(512, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour4"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour5" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(640, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour5"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour6" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(768, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour6"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour7" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(896, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour7"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Hour8" type="Node2D" parent="Line2D/Sections"]
-position = Vector2(1024, 32)
-
-[node name="VBoxContainer1" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 11.0
-offset_right = -32.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -12.0
-offset_top = 11.0
-offset_right = 4.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="Line2D/Sections/Hour8"]
-custom_minimum_size = Vector2(16, 16)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 24.0
-offset_top = 11.0
-offset_right = 40.0
-offset_bottom = 27.0
-grow_horizontal = 2
-scale = Vector2(1.5, 1.5)
-metadata/_edit_use_anchors_ = true
-
-[node name="Line2D" type="Line2D" parent="Line2D"]
+[node name="Line2D" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(64, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D2" type="Line2D" parent="Line2D"]
+[node name="Line2D2" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(192, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D3" type="Line2D" parent="Line2D"]
+[node name="Line2D3" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(320, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D4" type="Line2D" parent="Line2D"]
+[node name="Line2D4" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(448, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D5" type="Line2D" parent="Line2D"]
+[node name="Line2D5" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(576, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D6" type="Line2D" parent="Line2D"]
+[node name="Line2D6" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(704, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D7" type="Line2D" parent="Line2D"]
+[node name="Line2D7" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(832, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D8" type="Line2D" parent="Line2D"]
+[node name="Line2D8" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(960, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
 
-[node name="Line2D9" type="Line2D" parent="Line2D"]
+[node name="Line2D9" type="Line2D" parent="Line2D/Markers"]
 position = Vector2(1088, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0

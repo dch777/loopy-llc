@@ -2,6 +2,8 @@
 
 class_name ContractCard extends Node
 
+signal select_contract(contract_card: ContractCard)
+
 @export var contract: Contract = Contract.new()
 
 @onready var name_label: Label = $SubViewport/ColorRect/MarginContainer/VBoxContainer/NameLabel
@@ -23,6 +25,12 @@ class_name ContractCard extends Node
 @onready var task_container: HBoxContainer = $SubViewport/ColorRect/MarginContainer/VBoxContainer/TaskContainer
 
 func _ready() -> void:
+	populate()
+
+func populate():
+	for child in task_container.get_children():
+		child.queue_free()
+
 	name_label.text = contract.contract_name
 
 	if contract.cost > 0:
@@ -30,10 +38,22 @@ func _ready() -> void:
 		cost_label.visible = true
 		cost_separator.visible = true
 
-	if contract.tasks.size() > 0:
+	if contract.task_ids.size() > 0:
 		task_label.visible = true
 		task_separator.visible = true
 		task_container.visible = true
+
+	for i in range(contract.task_ids.size()):
+		var task_icon = TextureRect.new()
+		var icon_path = "res://assets/sprites/task-%s.tres" % contract.task_ids[i]
+
+		task_icon.texture = load(icon_path)
+		task_icon.custom_minimum_size = Vector2(32, 32)
+		task_icon.material = load("res://assets/shaders/icon.tres")
+
+		task_container.add_child(task_icon)
+		if i < contract.task_ids.size() - 1:
+			task_container.add_child(VSeparator.new())
 	
 	if contract.num_worker_rewarded > 0 or contract.cash_rewarded > 0:
 		reward_label.visible = true
@@ -51,9 +71,6 @@ func _ready() -> void:
 
 	reward_vseparator.visible = contract.num_worker_rewarded > 0 and contract.cash_rewarded > 0
 
-	for i in range(contract.tasks.size()):
-		var task_icon = TextureRect.new()
-		var icon_path = "res://assets/sprites/task-%s.tres" % contract.tasks[i].task_type
-		task_icon.texture = load(icon_path)
-		task_icon.custom_minimum_size = Vector2(32, 32)
-		task_icon.material = load("res://assets/shaders/icon.tres")
+func _on_texture_rect_gui_input(event: InputEvent) -> void:
+	if event.is_action("select") and event.pressed:
+		select_contract.emit(self)
