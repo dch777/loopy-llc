@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpmwr15hfgeef"]
+
+[ext_resource type="Texture2D" uid="uid://dg5x6h2n0tugo" path="res://assets/tilemaps/hr.png" id="1_coksr"]
+[ext_resource type="Script" uid="uid://ygipel88d4i5" path="res://scripts/task_site.gd" id="1_r3mbu"]
+[ext_resource type="Texture2D" uid="uid://ccolyh5c27jsl" path="res://assets/sprites/empty_progress.tres" id="3_gcuuy"]
+[ext_resource type="Texture2D" uid="uid://b3sn1gqn13ymd" path="res://assets/sprites/fill_progress.tres" id="4_0gov1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coksr"]
+size = Vector2(20, 36)
+
+[node name="HumanResources" type="Node2D" node_paths=PackedStringArray("seats")]
+script = ExtResource("1_r3mbu")
+seats = [NodePath("Area2D")]
+target_offsets = Array[Vector2i]([Vector2i(0, 1)])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_coksr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_coksr")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -12.0
+offset_top = -28.0
+offset_right = 12.0
+offset_bottom = -26.0
+texture_under = ExtResource("3_gcuuy")
+texture_progress = ExtResource("4_0gov1")

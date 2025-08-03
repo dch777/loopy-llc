@@ -6,4 +6,4 @@
 script = ExtResource("1_7c21g")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 240.0
+wait_time = 480.0
