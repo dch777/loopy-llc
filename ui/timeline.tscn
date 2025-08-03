@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwxvi26mjynhv"]
+[gd_scene load_steps=13 format=3 uid="uid://cwxvi26mjynhv"]
 
 [ext_resource type="Script" uid="uid://bmnh8ito2dop4" path="res://scripts/timeline.gd" id="1_2a5mp"]
 [ext_resource type="Script" uid="uid://uu3pnqd00pit" path="res://scripts/contract.gd" id="2_3thbc"]
@@ -14,6 +14,15 @@ cost = 0
 num_worker_rewarded = 0
 cash_rewarded = 0
 metadata/_custom_type_script = "uid://uu3pnqd00pit"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wfyhw"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d52bb"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xxioc"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_umuy1"]
 atlas = ExtResource("2_em7vr")
@@ -219,16 +228,28 @@ columns = 3
 visible = false
 
 [node name="ContractCard" parent="NewContractCards" instance=ExtResource("3_umuy1")]
-position = Vector2(56, 240)
-scale = Vector2(0.15, 0.15)
+offset_left = 56.0
+offset_top = 240.0
+offset_right = 209.0
+offset_bottom = 438.0
+scale = Vector2(1.8, 1.8)
+texture = SubResource("ViewportTexture_wfyhw")
 
 [node name="ContractCard2" parent="NewContractCards" instance=ExtResource("3_umuy1")]
-position = Vector2(371, 240)
-scale = Vector2(0.15, 0.15)
+offset_left = 371.0
+offset_top = 240.0
+offset_right = 524.0
+offset_bottom = 438.0
+scale = Vector2(1.8, 1.8)
+texture = SubResource("ViewportTexture_d52bb")
 
 [node name="ContractCard3" parent="NewContractCards" instance=ExtResource("3_umuy1")]
-position = Vector2(686, 240)
-scale = Vector2(0.15, 0.15)
+offset_left = 686.0
+offset_top = 240.0
+offset_right = 839.0
+offset_bottom = 438.0
+scale = Vector2(1.8, 1.8)
+texture = SubResource("ViewportTexture_xxioc")
 
 [node name="Confirm" type="ColorRect" parent="NewContractCards"]
 offset_left = 1001.0
@@ -296,6 +317,24 @@ width = 3.0
 position = Vector2(1088, 32)
 points = PackedVector2Array(0, -8, 0, 8)
 width = 3.0
+
+[node name="LeftPreview" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 100.0
+offset_right = 217.0
+offset_bottom = 298.0
+scale = Vector2(2.4, 2.4)
+
+[node name="RightPreview" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 720.0
+offset_top = 100.0
+offset_right = 873.0
+offset_bottom = 298.0
+scale = Vector2(2.4, 2.4)
 
 [connection signal="gui_input" from="LineCover" to="." method="_on_line_cover_gui_input"]
 [connection signal="gui_input" from="FullCover" to="." method="_on_full_cover_gui_input"]

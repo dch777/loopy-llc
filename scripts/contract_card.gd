@@ -71,6 +71,6 @@ func populate():
 
 	reward_vseparator.visible = contract.num_worker_rewarded > 0 and contract.cash_rewarded > 0
 
-func _on_texture_rect_gui_input(event: InputEvent) -> void:
+func _on_gui_input(event:InputEvent) -> void:
 	if event.is_action("select") and event.pressed:
 		select_contract.emit(self)

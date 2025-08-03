@@ -11,22 +11,16 @@ extends Control
 
 @onready var show_tasks = false
 @onready var schedule = []
-@onready var num_tasks_per_hour = {
-	1: 0,
-	2: 0,
-	3: 0,
-	4: 0,
-	5: 0,
-	6: 0,
-	7: 0,
-	8: 0
-}
 
 @onready var current_hour = 1
 
 @onready var timeline_lock = false
+@onready var preview_enabled = false
+
+@onready var active_contracts: Array[Contract] = []
 var selected_contract: Contract
 var selected_card: ContractCard
+var selected_stub: ContractCard
 var selected_hour: int
 
 # Called when the node enters the scene tree for the first time.
@@ -41,7 +35,9 @@ func _ready() -> void:
 	for contract_card in $NewContractCards.find_children("*", "ContractCard"):
 		contract_card.select_contract.connect(select_contract)
 
+	add_task(OfficeTask.new(1, 0))
 	GameTime.start_game_time()
+	open_contract_selection()
 
 func _process(delta: float) -> void:
 	# Move hour marker across
@@ -82,7 +78,6 @@ func add_task(task: OfficeTask) -> void:
 	var box_path = "FullCover/Hour%s/GridContainer" % task.hour
 	get_node(box_path).add_child(task.task_icon)
 	schedule.append(task)
-	num_tasks_per_hour[task.hour] += 1
 
 func preview_contract(contract: Contract, hour: int):
 	if selected_contract == null or hour < 1:
@@ -147,40 +142,86 @@ func select_hour(hour: int):
 func select_contract(contract_card: ContractCard):
 	clear_preview(selected_contract, selected_hour)
 	if selected_card != null:
-		selected_card.scale = Vector2(0.15, 0.15)
+		selected_card.scale = Vector2(1.8, 1.8)
 
 	selected_hour = -1
 	selected_contract = contract_card.contract
 	selected_card = contract_card
 
-	selected_card.scale = Vector2(0.16, 0.16)
+	selected_card.scale = Vector2(1.92, 1.92)
 
 func confirm_contract():
 	clear_preview(selected_contract, selected_hour)
 	for i in range(selected_contract.task_ids.size()):
-		add_task(OfficeTask.new(selected_hour + i, selected_contract.task_ids[i]))
+		var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
+		add_task(task)
+		selected_contract.tasks.append(task)
+
+	var new_card: ContractCard = selected_card.duplicate()
+	new_card.position = Vector2(0, 0)
+	new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
+	new_card.select_contract.connect(stub_selected.bind(selected_hour + selected_contract.task_ids.size() - 1))
+	new_card.material = preload("res://assets/shaders/stub.tres")
+	get_node("FullCover/Hour%s" % (selected_hour + selected_contract.task_ids.size() - 1)).add_child(new_card)
 
 	selected_hour = -1
 	selected_contract = null
-	selected_card.scale = Vector2(0.15, 0.15)
+	selected_card.scale = Vector2(1.8, 1.8)
 	selected_card = null
 
 	close_contract_selection()
 
+func stub_selected(stub: ContractCard, hour: int):
+	if !preview_enabled:
+		return
+
+	var target: TextureRect = $LeftPreview
+	if hour < 5:
+		target = $RightPreview
+
+	if selected_stub == stub:
+		for task in stub.contract.tasks:
+			if task.is_complete:
+				task.task_icon.material = preload("res://assets/shaders/task_complete.tres")
+			else:
+				task.task_icon.material = preload("res://assets/shaders/task_incomplete.tres")
+		target.texture = null
+		target.visible = false
+		selected_stub = null
+	else:
+		for task in stub.contract.tasks:
+			task.task_icon.material = preload("res://assets/shaders/task_selected.tres")
+		selected_stub = stub
+		target.texture = stub.texture
+		target.visible = true
+
 func _on_line_cover_gui_input(event:InputEvent) -> void:
 	if !show_tasks and event.is_action("select") and event.pressed:
-		open_contract_selection()
-		# manager.clear_selected_workers()
-		# $FullCover.show()
-		# $LineCover.hide()
-		# show_tasks = true
+		manager.clear_selected_workers()
+		$FullCover.show()
+		$LineCover.hide()
+		show_tasks = true
+		preview_enabled = true
 
-		# GameTime.menu_pause()
+		GameTime.menu_pause()
 
 func _on_full_cover_gui_input(event:InputEvent) -> void:
 	if show_tasks and event.is_action("select") and event.pressed and !timeline_lock:
 		$FullCover.hide()
 		$LineCover.show()
 		show_tasks = false
+		preview_enabled = false
+
+		if selected_stub != null:
+			for task in selected_stub.contract.tasks:
+				if task.is_complete:
+					task.task_icon.material = preload("res://assets/shaders/task_complete.tres")
+				else:
+					task.task_icon.material = preload("res://assets/shaders/task_incomplete.tres")
+		$LeftPreview.visible = false
+		$RightPreview.visible = false
+		$LeftPreview.texture = null
+		$RightPreview.texture = null
+		selected_stub = null
 
 		GameTime.menu_restore()

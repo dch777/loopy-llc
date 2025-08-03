@@ -4,10 +4,13 @@
 [ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="1_xdeqc"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="2_lsonp"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n5a2c"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xdeqc"]
 viewport_path = NodePath("SubViewport")
 
-[node name="ContractCard" type="Node2D"]
+[node name="ContractCard" type="TextureRect"]
+offset_right = 153.0
+offset_bottom = 198.0
+texture = SubResource("ViewportTexture_xdeqc")
 script = ExtResource("1_8dyin")
 
 [node name="SubViewport" type="SubViewport" parent="."]
@@ -125,13 +128,4 @@ text = "TASKS:"
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-texture_repeat = 1
-offset_left = -10.0
-offset_top = -8.0
-offset_right = 602.0
-offset_bottom = 784.0
-scale = Vector2(3, 3)
-texture = SubResource("ViewportTexture_n5a2c")
-
-[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
