@@ -8,8 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$VBoxContainer2/Label.text = "%s/%s" % [tasks_complete, total_tasks]
-	$VBoxContainer2/Label2.text = str(money_earned)
+	$VBoxContainer2/Label.text = "%s/%s" % [GameTime.tasks_complete, GameTime.total_tasks]
 	GameTime.total_money += money_earned
 	$VBoxContainer2/Label3.text = str(GameTime.total_money)
 	
@@ -24,11 +23,6 @@ func _on_timer_timeout() -> void:
 		$Timer.start()
 		what_stat_am_i_on += 1
 	elif what_stat_am_i_on == 1:
-		$VBoxContainer/Label2.show()
-		$VBoxContainer2/Label2.show()
-		$Timer.start()
-		what_stat_am_i_on += 1
-	elif what_stat_am_i_on == 2:
 		$VBoxContainer/Label3.show()
 		$VBoxContainer2/Label3.show()
 		$Timer.start()

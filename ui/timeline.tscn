@@ -343,10 +343,10 @@ scale = Vector2(1.8, 1.8)
 texture = SubResource("ViewportTexture_xxioc")
 
 [node name="Confirm" type="ColorRect" parent="NewContractCards"]
-offset_left = 1001.0
-offset_top = 240.0
-offset_right = 1096.0
-offset_bottom = 596.0
+offset_left = 1000.0
+offset_top = 328.0
+offset_right = 1095.0
+offset_bottom = 512.0
 color = Color(0.356863, 0.701961, 0.380392, 1)
 
 [node name="HourMarker" type="Node2D" parent="."]
@@ -429,14 +429,15 @@ scale = Vector2(2.4, 2.4)
 
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 552.0
-offset_right = 1096.0
-offset_bottom = 617.0
+offset_left = 976.0
+offset_top = 600.0
+offset_right = 1137.0
+offset_bottom = 633.0
 theme_override_fonts/font = ExtResource("6_d52bb")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 32
 text = "$"
 horizontal_alignment = 2
+autowrap_mode = 2
 
 [connection signal="gui_input" from="LineCover" to="." method="_on_line_cover_gui_input"]
 [connection signal="gui_input" from="FullCover" to="." method="_on_full_cover_gui_input"]

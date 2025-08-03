@@ -63,6 +63,9 @@ func _ready():
 	global_position = get_node("../background").map_to_local(map_position)
 
 func _process(delta: float):
+	if GameTime.get_time_left() == 0:
+		exhaustion = 0
+	
 	if state_stack.size() > 0:
 		state_stack[0].update(delta)
 

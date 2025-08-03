@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://crhcoabvutwmu"]
 
-[ext_resource type="Script" uid="uid://4odrlgonqmlo" path="res://ui/end_day.gd" id="1_3eegd"]
+[ext_resource type="Script" uid="uid://4odrlgonqmlo" path="res://scripts/end_day.gd" id="1_3eegd"]
 [ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="1_6bdhl"]
 
 [sub_resource type="Curve2D" id="Curve2D_3eegd"]
@@ -79,14 +79,6 @@ theme_override_font_sizes/font_size = 60
 text = "Tasks Complete:"
 horizontal_alignment = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_6bdhl")
-theme_override_font_sizes/font_size = 60
-text = "Money Earned:"
-horizontal_alignment = 2
-
 [node name="Label3" type="Label" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -108,14 +100,6 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_6bdhl")
 theme_override_font_sizes/font_size = 60
 text = "10/10"
-horizontal_alignment = 2
-
-[node name="Label2" type="Label" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_6bdhl")
-theme_override_font_sizes/font_size = 60
-text = "123456789"
 horizontal_alignment = 2
 
 [node name="Label3" type="Label" parent="VBoxContainer2"]

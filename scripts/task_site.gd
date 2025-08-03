@@ -15,7 +15,8 @@ class_name TaskSite extends Node2D
 	2 - phone call
 '''
 @export var task_type: int
-@export var workable: bool = true
+@export var should_be_workable: bool = true
+var workable: bool = should_be_workable
 
 @export var animation: String = "idle"
 @export var sound: AudioStream
@@ -57,8 +58,13 @@ func _process(delta: float) -> void:
 
 	if GameTime.get_time_left() == 0:
 		workable = false
+	else:
+		workable = should_be_workable
+
 
 func _ready() -> void:
+	workable = should_be_workable
+	
 	if workable:
 		$TextureProgressBar.max_value = time_to_complete
 		
