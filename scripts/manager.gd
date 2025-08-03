@@ -57,8 +57,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
+	var hover_active = select_timer < 0.5 and select_rect.size.length() <= 32 and selected_workers.size() > 0 and hovered_objects.size() == 0 and astar.is_in_boundsv(hovered_cell) and !astar.is_point_solid(hovered_cell)
 	if hover_shader_enabled:
 		hover_shader.set_shader_parameter("highlighted_cell", hovered_cell_global_coords)
+		hover_shader.set_shader_parameter("active", float(hover_active))
+	else:
+		$Selection.set_global_position(hovered_cell_global_coords - Vector2(8.0, 8.0))
+		$Selection.visible = hover_active
 
 	if selected_workers.size() == 1:
 		status_bar.visible = true
@@ -66,11 +71,6 @@ func _process(delta: float) -> void:
 		status_bar.material.set_shader_parameter("angry_size", 0.0)
 	else:
 		status_bar.visible = false
-
-	if select_timer < 0.5 and select_rect.size.length() <= 32 and selected_workers.size() > 0 and hovered_objects.size() == 0 and astar.is_in_boundsv(hovered_cell) and !astar.is_point_solid(hovered_cell):
-		hover_shader.set_shader_parameter("active", 1.0)
-	else:
-		hover_shader.set_shader_parameter("active", 0.0)
 
 	if Input.is_action_just_released("select") and select_timer < 0.5 and select_rect.size.length() < 32 and !astar.is_point_solid(hovered_cell) and hovered_objects.size() == 0:
 		for worker in selected_workers:

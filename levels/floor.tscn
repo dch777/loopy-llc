@@ -302,6 +302,12 @@ position = Vector2(224, 40)
 points = PackedVector2Array(504, 560, 600, 576)
 width = 2.0
 
+[node name="Selection" type="ColorRect" parent="manager"]
+visible = false
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 1, 1, 0.352941)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Timeline" parent="CanvasLayer" node_paths=PackedStringArray("manager") instance=ExtResource("2_d5tcp")]
