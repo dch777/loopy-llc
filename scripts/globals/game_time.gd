@@ -7,7 +7,8 @@ var total_money: int = 200
 var total_tasks: int = 0
 var tasks_complete: int = 0
 
-var alarm: bool = false
+var alarm: int = 0
+var tutorial: bool = false
 
 func start_game_time() -> void:
 	$Timer.start()
@@ -24,8 +25,8 @@ func menu_pause():
 	Engine.time_scale = 0.01
 
 func menu_restore():
-	Engine.time_scale = _temp_scale
 	GameTime.pause_lock = false
+	Engine.time_scale = _temp_scale
 
 func toggle_pause():
 	if Engine.time_scale == 1.0:

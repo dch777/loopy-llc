@@ -21,4 +21,8 @@ func _on_car_area_entered(area: Area2D) -> void:
 	area.get_parent().get_parent().hovered_objects.erase(area.get_parent())
 	area.get_parent().get_parent().selected_workers.erase(area.get_parent())
 	area.get_parent().get_parent().workers.erase(area.get_parent())
+
+	if area.get_parent().get_parent().workers.size() == 0:
+		area.get_parent().get_parent().spawn_worker(Vector2(-32, 10), Vector2(0, 2))
+	
 	area.get_parent().queue_free()

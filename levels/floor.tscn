@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b5awawncdbbvj"]
+[gd_scene load_steps=43 format=4 uid="uid://b5awawncdbbvj"]
 
 [ext_resource type="Script" uid="uid://bam3dxtmui6rd" path="res://scripts/camera.gd" id="1_5bl5m"]
 [ext_resource type="Texture2D" uid="uid://brv4pe2wmpqjn" path="res://assets/tilemaps/office_stuff.png" id="1_umnu8"]
@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://dg5x6h2n0tugo" path="res://assets/tilemaps/hr.png" id="18_8npmo"]
 [ext_resource type="PackedScene" uid="uid://572w6ljjifak" path="res://prefabs/door.tscn" id="18_uqsjy"]
 [ext_resource type="PackedScene" uid="uid://cpmwr15hfgeef" path="res://prefabs/human_resources.tscn" id="19_2spgc"]
+[ext_resource type="Script" uid="uid://cb0ukyje7rpdr" path="res://scripts/tutorial_slide.gd" id="23_c07y7"]
+[ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="25_v77hi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uudy6"]
 texture = ExtResource("2_88fx8")
@@ -185,11 +187,14 @@ script = ExtResource("1_5bl5m")
 zoom_max = 10.0
 zoom_min = 1.6
 
-[node name="manager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "status_bar")]
+[node name="manager" type="Node2D" parent="." node_paths=PackedStringArray("camera", "status_bar", "input_blocker", "tutorial_container", "tutorial_text")]
 z_index = 1
 script = ExtResource("2_aawf1")
 camera = NodePath("../Camera2D")
 status_bar = NodePath("../CanvasLayer/StatusBar")
+input_blocker = NodePath("../CanvasLayer/InputBlocker")
+tutorial_container = NodePath("../CanvasLayer/TutorialText")
+tutorial_text = NodePath("../CanvasLayer/TutorialText/Label")
 
 [node name="Door" parent="manager" instance=ExtResource("18_uqsjy")]
 position = Vector2(-80, 88)
@@ -308,6 +313,156 @@ offset_right = 16.0
 offset_bottom = 16.0
 color = Color(1, 1, 1, 0.352941)
 
+[node name="tutorial_slides" type="Node2D" parent="."]
+
+[node name="intro" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "Welcome to your first day as a site boss here at Loopy LLC! Today we're going to be completing the standard new manager training. Click anywhere to continue!"
+input_blocked = true
+ui_blocked = true
+clear_selected = true
+pause = true
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="explanation" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "As the site manager here at Loopy LLC, you are responsible for managing our employees, completing tasks, and accepting new contracts."
+input_blocked = true
+ui_blocked = true
+clear_selected = true
+pause = true
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="explanation2" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "At the top of your screen, there's a timeline. Go ahead and click on it, then click this text to continue."
+input_blocked = true
+clear_selected = true
+pause = true
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="timeline" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "This is the timeline page! Below the timeline you can see which tasks you have to complete at what time on each day, and the contracts that they're associated with. If you click on the stub, you can see more info about the associated tasks and rewards."
+input_blocked = true
+drag_blocked = true
+clear_selected = true
+timeline_locked = true
+pause = true
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks" type="Node" parent="tutorial_slides" node_paths=PackedStringArray("follow")]
+script = ExtResource("23_c07y7")
+text = "Lets finish some tasks! Click on the worker to select him, and then click anywhere to tell him where to go! If you click on a computer, you can get started on a task! Use your middle mouse to navigate."
+clear_selected = true
+follow = NodePath("../../manager/Worker")
+pause = true
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks2" type="Node" parent="tutorial_slides" node_paths=PackedStringArray("follow")]
+script = ExtResource("23_c07y7")
+text = "I've unpaused the time so you can finish the task. As he works, he uses energy and gets more tired. Eventually, he won't have enough energy to work anymore!"
+follow = NodePath("../../manager/Worker")
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks3" type="Node" parent="tutorial_slides" node_paths=PackedStringArray("follow")]
+script = ExtResource("23_c07y7")
+text = "If you return to the timeline menu, you can see that the task has been completed, and you should have received the reward for completing the contract."
+follow = NodePath("../../manager/Worker")
+wait_for_click = true
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks4" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "The computer task takes 20 seconds to complete"
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(-112, -80)
+zoom_target = 5.0
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks5" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "The phone task takes 45 seconds to complete."
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(-16, 528)
+zoom_target = 5.0
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks6" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "The meeting task takes 30 seconds, but requires 4 people"
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(608, 104)
+zoom_target = 4.5
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks9" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "If you workers fall asleep, couches help them get their rest!"
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(80, 600)
+zoom_target = 6.0
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks10" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "If an alarm goes off, no one can work. Someone has to turn it off!"
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(56, 76)
+zoom_target = 6.0
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks7" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "At the phone booth, you can sign up for new contracts!"
+input_blocked = true
+ui_blocked = true
+drag_blocked = true
+clear_selected = true
+wait_for_click = true
+move_camera = true
+camera_target = Vector2(488, 712)
+zoom_target = 4.5
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
+[node name="starting tasks8" type="Node" parent="tutorial_slides"]
+script = ExtResource("23_c07y7")
+text = "This concludes your training. Good luck, and have fun!"
+wait_for_click = true
+zoom_target = 4.5
+metadata/_custom_type_script = "uid://cb0ukyje7rpdr"
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Timeline" parent="CanvasLayer" node_paths=PackedStringArray("manager") instance=ExtResource("2_d5tcp")]
@@ -320,9 +475,54 @@ offset_top = 608.0
 offset_right = 896.0
 offset_bottom = 624.0
 
+[node name="InputBlocker" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TutorialText" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/TutorialText"]
+z_index = 99
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("25_v77hi")
+theme_override_font_sizes/font_size = 48
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/TutorialText/Label"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.470588)
+
 [node name="Road" parent="." instance=ExtResource("14_f53xc")]
 position = Vector2(-512, 272)
 
 [node name="Road2" parent="." instance=ExtResource("14_f53xc")]
 position = Vector2(1120, 384)
 scale = Vector2(-1, 1)
+
+[connection signal="gui_input" from="CanvasLayer/InputBlocker" to="manager" method="_on_input_blocker_gui_input"]
+[connection signal="gui_input" from="CanvasLayer/TutorialText/Label/ColorRect" to="manager" method="_on_input_blocker_gui_input"]

@@ -3,6 +3,7 @@
 class_name ContractCard extends TextureRect
 
 signal select_contract(contract_card: ContractCard)
+signal contract_completed(contract_card: Contract)
 
 @export var contract: Contract = Contract.new()
 
@@ -90,3 +91,10 @@ func populate():
 func _on_gui_input(event:InputEvent) -> void:
 	if event.is_action("select") and event.pressed:
 		select_contract.emit(self)
+
+func check_completion():
+	for task in contract.tasks:
+		if !task.is_complete:
+			return
+
+	contract_completed.emit(self)

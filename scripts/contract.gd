@@ -2,8 +2,6 @@
 
 class_name Contract extends Resource
 
-signal contract_completed(contract: Contract)
-
 @export var contract_name: String
 @export var task_ids: Array[int]
 @export var cost: int
@@ -18,12 +16,3 @@ func _init(_contract_name: String = "", _task_ids: Array[int] = [], _cost: int =
 	self.cost = _cost
 	self.num_worker_rewarded = _num_worker_rewarded
 	self.cash_rewarded = _cash_rewarded
-
-func check_completion():
-	print("checking completion")
-	print(tasks)
-	for task in tasks:
-		if !task.is_complete:
-			return
-
-	contract_completed.emit(self)

@@ -9,6 +9,7 @@ extends Camera2D
 @onready var position_target = null
 @onready var reached_position
 var previous_position: Vector2
+@onready var drag_blocked: bool = false
 
 func _ready() -> void:
 	GameAudio.play_audio_loop(load("res://assets/audio/Beach House.ogg"))
@@ -30,9 +31,9 @@ func _process(delta: float) -> void:
 	zoom = lerp(zoom, Vector2(zoom_target, zoom_target), 0.1)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("drag") and event.pressed and position_target == null:
+	if event.is_action("drag") and event.pressed and position_target == null and !drag_blocked:
 		previous_position = event.position
 
-	if Input.is_action_pressed("drag") and event is InputEventMouseMotion and position_target == null:
+	if Input.is_action_pressed("drag") and event is InputEventMouseMotion and position_target == null and !drag_blocked:
 		global_position -= (1.0 / zoom.x) * (event.position - previous_position)
 		previous_position = event.position

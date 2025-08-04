@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://be2er2t4q0x2p"]
+[gd_scene load_steps=7 format=3 uid="uid://be2er2t4q0x2p"]
 
 [ext_resource type="Script" uid="uid://bu1eivqopy3mu" path="res://scripts/contract_card.gd" id="1_8dyin"]
 [ext_resource type="FontFile" uid="uid://h7f15wbdefhn" path="res://assets/fonts/gomarice_no_continue.ttf" id="1_xdeqc"]
+[ext_resource type="Material" uid="uid://bm8ppft85jyui" path="res://assets/shaders/task_complete.tres" id="2_0mbch"]
 [ext_resource type="Texture2D" uid="uid://bhat5f0lspcij" path="res://assets/sprites/worker.png" id="2_lsonp"]
+[ext_resource type="Texture2D" uid="uid://cn75s0q3wclgf" path="res://assets/sprites/check.png" id="2_yc6dj"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xdeqc"]
 viewport_path = NodePath("SubViewport")
@@ -127,5 +129,14 @@ text = "TASKS:"
 [node name="TaskContainer" type="HBoxContainer" parent="SubViewport/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="Check" type="Sprite2D" parent="SubViewport"]
+visible = false
+texture_filter = 3
+material = ExtResource("2_0mbch")
+position = Vector2(120, 30)
+scale = Vector2(4, 4)
+texture = ExtResource("2_yc6dj")
+flip_h = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -35,8 +35,6 @@ func _process(delta: float) -> void:
 	elif hour == 7 and current_time <= 60:
 		try_trigger_alarm()
 	
-	GameTime.alarm = get_parent().workable
-
 func try_trigger_alarm() -> void:
 	if has_triggered:
 		return
@@ -56,10 +54,14 @@ func start_alarm() -> void:
 	#get_parent().seats.append($"../Area2D")
 	#get_parent().target_offsets.append(Vector2i(1, 0))
 	has_triggered = true
-
+	GameTime.alarm += 1
 
 func _on_fire_alarm_finished_task(task_type: int) -> void:
 	get_parent().workable = false
-	$"../AlarmLight".hide()
-	$"../AnimationPlayer".stop()
-	GameAudio.stop_audio(alarm)
+	if $"../AlarmLight".visible:
+		$"../AlarmLight".hide()
+		$"../AnimationPlayer".stop()
+
+		GameTime.alarm -= 1
+		if GameTime.alarm == 0:
+			GameAudio.stop_audio(alarm)

@@ -37,6 +37,25 @@ func _ready() -> void:
 
 	GameTime.start_game_time()
 
+	if GameTime.tutorial:
+		selected_contract = contracts[7]
+		selected_card = preload("res://prefabs/contract_card.tscn").instantiate()
+		selected_card.contract = selected_contract.duplicate()
+		selected_hour = 1
+
+		for i in range(selected_card.contract.task_ids.size()):
+			var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
+			task.contract_card = selected_card
+			add_task(task)
+			selected_card.contract.tasks.append(task)
+
+		confirm_contract()
+		# print("FullCover/Hour%s" % (selected_hour + selected_contract.task_ids.size() - 1))
+		# selected_card.position = Vector2(0, 0)
+		# selected_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT
+		# selected_card.material = preload("res://assets/shaders/stub.tres")
+		# get_node("FullCover/Hour%s" % (selected_hour + selected_contract.task_ids.size() - 1)).add_child(selected_card)
+
 func _process(delta: float) -> void:
 	# Move hour marker across
 	var t = 1.0 - (GameTime.get_time_left() / GameTime.get_wait_time())
@@ -164,10 +183,11 @@ func select_contract(contract_card: ContractCard):
 
 	selected_card.scale = Vector2(1.92, 1.92)
 
-func complete_contract(contract: Contract):
-	GameTime.total_money += contract.cash_rewarded
-	for i in range(contract.num_worker_rewarded):
+func complete_contract(card: ContractCard):
+	GameTime.total_money += card.contract.cash_rewarded
+	for i in range(card.contract.num_worker_rewarded):
 		manager.spawn_worker(Vector2(-32, 10), Vector2(0, 2))
+	card.get_node("SubViewport/Check").visible = true
 
 func confirm_contract():
 	clear_preview(selected_contract, selected_hour)
@@ -175,19 +195,18 @@ func confirm_contract():
 	if selected_contract.cost > 0:
 		GameTime.total_money -= selected_contract.cost
 
-	print(selected_contract.tasks.size())
 	if selected_contract.task_ids.size() == 0:
-		complete_contract(selected_contract)
+		complete_contract(selected_card)
 	else:
 		var new_card: ContractCard = preload("res://prefabs/contract_card.tscn").instantiate()
 		new_card.contract = selected_card.contract.duplicate()
 
 		for i in range(new_card.contract.task_ids.size()):
 			var task = OfficeTask.new(selected_hour + i, selected_contract.task_ids[i])
-			task.contract = new_card.contract
+			task.contract_card = new_card
 			add_task(task)
 			new_card.contract.tasks.append(task)
-		new_card.contract.contract_completed.connect(complete_contract)
+		new_card.contract_completed.connect(complete_contract)
 
 		new_card.position = Vector2(0, 0)
 		new_card.expand_mode = TextureRect.ExpandMode.EXPAND_FIT_HEIGHT

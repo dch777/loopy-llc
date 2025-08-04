@@ -16,6 +16,7 @@ class_name TaskSite extends Node2D
 '''
 @export var task_type: int
 @export var should_be_workable: bool = true
+@export var alarm_exception: bool = false
 var workable: bool = should_be_workable
 
 @export var animation: String = "idle"
@@ -37,7 +38,7 @@ var time_accum = 0.0
 signal finished_task(task_type: int)
 
 func _process(delta: float) -> void:
-	if !workable or GameTime.alarm:
+	if !workable or (!alarm_exception and GameTime.alarm > 0):
 		return
 
 	var sleeping: bool = false
@@ -60,7 +61,6 @@ func _process(delta: float) -> void:
 		workable = false
 	else:
 		workable = should_be_workable
-
 
 func _ready() -> void:
 	workable = should_be_workable

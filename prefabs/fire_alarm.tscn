@@ -53,6 +53,7 @@ facing_up = true
 facing_left = true
 time_to_complete = 3
 task_type = -1
+alarm_exception = true
 
 [node name="AlarmManager" type="Node2D" parent="."]
 script = ExtResource("2_6elti")

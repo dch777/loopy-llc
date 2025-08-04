@@ -2,6 +2,8 @@
 
 class_name Manager extends Node2D
 
+signal input_blocker_clicked()
+
 @export var diagonal_mode: AStarGrid2D.DiagonalMode = AStarGrid2D.DiagonalMode.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES
 @export var camera: Camera2D
 @export var status_bar: Node
@@ -25,6 +27,14 @@ var select_rect: Rect2
 @onready var one_time_bomb = false
 @onready var end_day_screen = preload("res://ui/end_day.tscn")
 @onready var bar
+
+var tutorial_slides: Array[TutorialSlide]
+var current_slide: int = -1
+var input_blocked = false
+var click_consumed = false
+@export var input_blocker: ColorRect
+@export var tutorial_container: MarginContainer
+@export var tutorial_text: Label
 
 func _ready() -> void:
 	astar.set_diagonal_mode(diagonal_mode)
@@ -54,6 +64,12 @@ func _ready() -> void:
 	for worker in find_children("*", "StateMachine", false):
 		workers.push_back(worker)
 	
+	for slide in get_node("../tutorial_slides").find_children("*", "TutorialSlide", false):
+		tutorial_slides.push_back(slide)
+	
+	if GameTime.tutorial:
+		start_tutorial()
+
 func _process(delta: float) -> void:
 	var hovered_cell = background.local_to_map(get_local_mouse_position())
 	var hovered_cell_global_coords = map_to_global(hovered_cell)
@@ -72,7 +88,7 @@ func _process(delta: float) -> void:
 	else:
 		status_bar.visible = false
 
-	if Input.is_action_just_released("select") and select_timer < 0.5 and select_rect.size.length() < 32 and !astar.is_point_solid(hovered_cell) and hovered_objects.size() == 0:
+	if !input_blocked and Input.is_action_just_released("select") and select_timer < 0.5 and select_rect.size.length() < 32 and !astar.is_point_solid(hovered_cell) and hovered_objects.size() == 0:
 		for worker in selected_workers:
 			navigate(worker, hovered_cell)
 
@@ -98,6 +114,8 @@ func _process(delta: float) -> void:
 		one_time_bomb = true
 		bar = end_day_screen.instantiate()
 		$"../CanvasLayer".add_child(bar)
+
+	click_consumed = false
 
 func _draw():
 	if select_timer > 0.0 and (select_timer > 0.5 or select_rect.size.length() > 32):
@@ -187,3 +205,47 @@ func next_day() -> void:
 	one_time_bomb = false
 	
 	bar.queue_free()
+
+func start_tutorial():
+	tutorial_container.visible = true
+	Engine.time_scale = 0.01
+	next_slide()
+
+func end_tutorial():
+	tutorial_container.visible = false
+	input_blocker.visible = false
+	input_blocked = false
+	camera.drag_blocked = false
+	$"../CanvasLayer/Timeline".timeline_lock = false
+
+func next_slide():
+	if current_slide >= 0:
+		pass
+	if current_slide == tutorial_slides.size() - 1:
+		end_tutorial()
+		return
+	current_slide += 1
+
+	var slide = tutorial_slides[current_slide]
+	tutorial_text.text = slide.text
+	input_blocked = slide.input_blocked
+	input_blocker.visible = slide.ui_blocked
+	camera.drag_blocked = slide.drag_blocked
+	$"../CanvasLayer/Timeline".timeline_lock = slide.timeline_locked
+	if slide.clear_selected:
+		clear_selected_workers()
+	if slide.follow != null:
+		follow(slide.follow)
+	if slide.pause:
+		GameTime.pause_lock = true
+		Engine.time_scale = 0.01
+	else:
+		GameTime.pause_lock = false
+		Engine.time_scale = 1.0
+	if slide.move_camera:
+		camera.position_target = slide.camera_target
+		camera.zoom_target = slide.zoom_target
+
+func _on_input_blocker_gui_input(event: InputEvent) -> void:
+	if event.is_action("select") and event.pressed:
+		input_blocker_clicked.emit()

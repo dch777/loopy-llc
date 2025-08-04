@@ -97,5 +97,5 @@ text = "Exit"
 alignment = 0
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/PlayTutorial" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/PlayTutorial" to="." method="_on_play_tutorial_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_button_up"]

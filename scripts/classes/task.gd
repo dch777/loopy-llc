@@ -5,7 +5,7 @@ class_name OfficeTask
 var hour: int
 var is_complete: bool = false
 var task_type: int
-var contract: Contract
+var contract_card: ContractCard
 
 var task_icon : TextureRect
 
@@ -22,7 +22,7 @@ func _init(_hour: int, _task_type: int) -> void:
 func complete() -> void:
 	task_icon.material = load("res://assets/shaders/task_complete.tres")
 	is_complete = true
-	contract.check_completion()
+	contract_card.check_completion()
 
 func reset() -> void:
 	task_icon.material = load("res://assets/shaders/task_incomplete.tres")
